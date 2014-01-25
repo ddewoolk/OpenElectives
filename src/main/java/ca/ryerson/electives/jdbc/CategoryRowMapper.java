@@ -14,8 +14,8 @@ public class CategoryRowMapper implements RowMapper<Category> {
   
  @Override  
  public Category mapRow(ResultSet resultSet, int line) throws SQLException {  
-  CategoryExtractor userExtractor = new CategoryExtractor();  
-  return userExtractor.extractData(resultSet);  
+  CategoryExtractor categoryExtractor = new CategoryExtractor();  
+  return categoryExtractor.extractData(resultSet);  
  }  
   
 }  

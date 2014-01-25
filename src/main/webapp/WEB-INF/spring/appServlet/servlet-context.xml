@@ -28,8 +28,10 @@
  	 <beans:bean id="courseService" class="ca.ryerson.electives.services.CourseServiceImpl" /> 
  	 <beans:bean id="categoryDao" class="ca.ryerson.electives.dao.CategoryDaoImpl" />  
  	 <beans:bean id="categoryService" class="ca.ryerson.electives.services.CategoryServiceImpl" /> 
+ 	 <beans:bean id="themeDao" class="ca.ryerson.electives.dao.ThemeDaoImpl" />  
+ 	 <beans:bean id="themeService" class="ca.ryerson.electives.services.ThemeServiceImpl" /> 
   
- 	<!-- declare datasource bean -->  
+ 	<!-- declare H2 datasource bean -->  
 	<!-- <beans:bean id="dataSource"-->  
      <!-- class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->  
      <!-- <beans:property name="driverClassName" value="org.h2.Driver" />  -->  
@@ -37,6 +39,8 @@
     <!--  <beans:property name="username" value="sa" />  -->  
     <!--  <beans:property name="password" value="" />  -->  
 	<!--</beans:bean> -->  
+	
+	<!-- declare Oracle datasource bean -->
 	<beans:bean id="dataSource"
 	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver " />

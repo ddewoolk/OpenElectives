@@ -1,42 +1,91 @@
 package ca.ryerson.electives.domain;
 
 public class Course {
-	private int courseId;  
-	 private String name;  
-	 private String description; 
-	 private int categoryId;
-	 
-	  
-	 public int getCourseId() {  
-	  return courseId;  
-	 }  
-	  
-	 public void setCourseId(int courseId) {  
-	  this.courseId = courseId;  
-	 }  
-	  
-	 public String getName() {  
-	  return name;  
-	 }  
-	  
-	 public void setName(String name) {  
-	  this.name = name;  
-	 }  
-	  
-	 public String getDescription() {  
-	  return description;  
-	 }  
-	  
-	 public void setDescription(String description) {  
-	  this.description = description;  
-	 }
+	private int courseId; 
+	private String subject;
+	private int catalogNbr;
+	private String courseTitle;
+	private String acadGroup;
+	private String acadOrg;
+	private String calendarDescription; 
+	private String prerequisites;
+	private String antirequisites;
 
-	public int getCategoryId() {
-		return categoryId;
+
+	public int getCourseId() {  
+		return courseId;  
+	}  
+
+	public void setCourseId(int courseId) {  
+		this.courseId = courseId;  
+	}  
+	
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setSubject(String subject) {
+		this.subject = subject;
+	} 
+	
+	public int getCatalogNbr() {
+		return catalogNbr;
+	}
+
+	public void setCatalogNbr(int catalogNbr) {
+		this.catalogNbr = catalogNbr;
+	}
+
+	public String getCourseTitle() {  
+		return courseTitle;  
 	}  
-	  
+
+	public void setCourseTitle(String courseTitle) {  
+		this.courseTitle = courseTitle;  
+	}  
+
+	public String getAcadGroup() {
+		return acadGroup;
+	}
+
+	public void setAcadGroup(String acadGroup) {
+		this.acadGroup = acadGroup;
+	}
+
+	public String getAcadOrg() {
+		return acadOrg;
+	}
+
+	public void setAcadOrg(String acadOrg) {
+		this.acadOrg = acadOrg;
+	}
+
+	public String getCalendarDescription() {
+		return calendarDescription;
+	}
+
+	public void setCalendarDescription(String calendarDescription) {
+		this.calendarDescription = calendarDescription;
+	}
+
+	public String getPrerequisites() {
+		return prerequisites;
+	}
+
+	public void setPrerequisites(String prerequisites) {
+		this.prerequisites = prerequisites;
+	}
+
+	public String getAntirequisites() {
+		return antirequisites;
+	}
+
+	public void setAntirequisites(String antirequisites) {
+		this.antirequisites = antirequisites;
+	}
+
+	
+
+ 
+
 }

@@ -19,7 +19,7 @@ td {
  width: 100px;  
  height: 22px;  
  text-align: center;  
-}  
+} 
 .heading {  
  font-size: 18px;  
  color: white;  
@@ -27,6 +27,13 @@ td {
  background-color: orange;  
  border: thick;  
 }  
+.bigcol{  
+ font-size: 15px;  
+ color: black;  
+ width: 400px;  
+ height: 22px;  
+ text-align: center;  
+} 
 </style>  
 </head>  
 <body>  
@@ -35,11 +42,19 @@ td {
    
  <form:form  method="GET" action="/CourseCatMVC/getCourseList">  
  <b>Course List | Ryerson University </b>  
-  <p>Course Category:
+   <p>Themes:
+   <select name="theme">
+   <option value=0> Select a Theme</option>
+   <c:forEach var="theme" items="${themeList}">
+   <option value="${theme.themeId}">${theme.name}</option>
+   </c:forEach>
+   </select>
+   <p>
+  <p>Categories:
    <select name="category" onchange="this.form.submit()">
    <option value=0> Select a Category</option>
    <c:forEach var="category" items="${categoryList}">
-   <option  value="${category.categoryId}">${category.name}</option>
+   <option value="${category.categoryId}">${category.name}</option>
    </c:forEach>
    </select>
    <p>
@@ -52,8 +67,8 @@ td {
    <c:forEach var="course" items="${courseList}">  
     <tr>  
      <td>${course.courseId}</td>  
-     <td>${course.name}</td>  
-     <td>${course.description}</td>  
+     <td>${course.courseTitle}</td>  
+     <td class="bigcol">${course.calendarDescription}</td>  
     </tr>  
    </c:forEach>  
   </table>  

@@ -21,7 +21,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public  List<Category> getCategoryList() {  
 	    	  List<Category> categoryList = new ArrayList<Category>();  
 	    	  
-	    	  String sql = "SELECT * FROM CATEGORY";  
+	    	  String sql = "SELECT * FROM CATEGORIES";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 	    	  categoryList = jdbcTemplate.query(sql, new CategoryRowMapper());  

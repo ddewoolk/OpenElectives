@@ -21,7 +21,7 @@ public class CourseDaoImpl implements CourseDao {
 	public  List<Course> getCourseList() {  
 	    	  List<Course> courseList = new ArrayList<Course>();  
 	    	  
-	    	  String sql = "select * from COURSE";  
+	    	  String sql = "select * from COURSES";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 	    	  courseList = jdbcTemplate.query(sql, new CourseRowMapper());  

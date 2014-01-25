@@ -21,9 +21,10 @@ public class CategoryExtractor implements ResultSetExtractor<Category> {
     
   Category category = new Category();  
     
-  category.setCategoryId(resultSet.getInt(1));  
-  category.setName(resultSet.getString(2));  
-  category.setDescription(resultSet.getString(3));  
+  category.setCategoryId(resultSet.getInt(1)); 
+  category.setSubThemeId(resultSet.getInt(2));
+  category.setName(resultSet.getString(3));  
+  category.setDescription(resultSet.getString(4));  
     
   return category;  
  }  
