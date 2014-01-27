@@ -30,10 +30,18 @@ td {
 .bigcol{  
  font-size: 15px;  
  color: black;  
- width: 400px;  
+ width: 500px;  
  height: 22px;  
  text-align: center;  
 } 
+.filter{
+width : 700px;
+text-align : left;
+}
+.dropdown{
+float : right;
+width : 580px;
+}
 </style>  
 </head>  
 <body>  
@@ -42,22 +50,30 @@ td {
    
  <form:form  method="GET" action="/CourseCatMVC/getCourseList">  
  <b>Course List | Ryerson University </b>  
-   <p>Themes:
-   <select name="theme">
+   <div class="filter">Themes:
+   <select name="theme" class="dropdown">
    <option value=0> Select a Theme</option>
    <c:forEach var="theme" items="${themeList}">
    <option value="${theme.themeId}">${theme.name}</option>
    </c:forEach>
    </select>
-   <p>
-  <p>Categories:
-   <select name="category" onchange="this.form.submit()">
+   </div>
+   <div class="filter">Subthemes:
+   <select name="subtheme" class="dropdown">
+   <option value=0> Select a Subtheme</option>
+   <c:forEach var="subtheme" items="${subthemeList}">
+   <option value="${subtheme.subthemeId}">${subtheme.name}</option>
+   </c:forEach>
+   </select>
+   </div>
+  <div class="filter">Categories:
+   <select name="category" class="dropdown" onchange="this.form.submit()">
    <option value=0> Select a Category</option>
    <c:forEach var="category" items="${categoryList}">
    <option value="${category.categoryId}">${category.name}</option>
    </c:forEach>
    </select>
-   <p>
+   </div>
   <table border="1">  
    <tr>  
     <td class="heading">Course Id</td>  

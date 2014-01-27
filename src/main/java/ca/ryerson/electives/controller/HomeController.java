@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.ryerson.electives.domain.Category;
 import ca.ryerson.electives.domain.Course;
+import ca.ryerson.electives.domain.Subtheme;
 import ca.ryerson.electives.domain.Theme;
 import ca.ryerson.electives.services.CategoryService;
 import ca.ryerson.electives.services.CourseService;
+import ca.ryerson.electives.services.SubthemeService;
 import ca.ryerson.electives.services.ThemeService;
 
 /**
@@ -33,6 +35,8 @@ public class HomeController {
      CategoryService categoryService;
 	@Autowired
 	 ThemeService themeService;
+	@Autowired
+	 SubthemeService subthemeService;
      
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -69,10 +73,12 @@ public class HomeController {
 //	  
 	  List<Category> categoryList = categoryService.getCategoryList();
 	  List<Theme> themeList = themeService.getThemeList();
+	  List<Subtheme> subthemeList = subthemeService.getSubthemeList();
 
 	  model.addAttribute("categoryList",categoryList);
 	  model.addAttribute("courseList",courseList);
 	  model.addAttribute("themeList",themeList);
+	  model.addAttribute("subthemeList",subthemeList);
 
 	  return "courseList";
 	 }  
