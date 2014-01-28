@@ -32,6 +32,8 @@
  	 <beans:bean id="themeService" class="ca.ryerson.electives.services.ThemeServiceImpl" /> 
  	 <beans:bean id="subthemeDao" class="ca.ryerson.electives.dao.SubthemeDaoImpl" />  
  	 <beans:bean id="subthemeService" class="ca.ryerson.electives.services.SubthemeServiceImpl" /> 
+ 	 <beans:bean id="electiveHierarchyDao" class="ca.ryerson.electives.dao.ElectiveHierarchyDaoImpl" />  
+ 	 <beans:bean id="electiveHierarchyService" class="ca.ryerson.electives.services.ElectiveHierarchyServiceImpl" />
   
  	<!-- declare H2 datasource bean -->  
 	<!-- <beans:bean id="dataSource"-->  

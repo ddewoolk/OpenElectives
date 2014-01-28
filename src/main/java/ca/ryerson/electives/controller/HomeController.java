@@ -20,6 +20,7 @@ import ca.ryerson.electives.domain.Subtheme;
 import ca.ryerson.electives.domain.Theme;
 import ca.ryerson.electives.services.CategoryService;
 import ca.ryerson.electives.services.CourseService;
+import ca.ryerson.electives.services.ElectiveHierarchyService;
 import ca.ryerson.electives.services.SubthemeService;
 import ca.ryerson.electives.services.ThemeService;
 
@@ -37,6 +38,8 @@ public class HomeController {
 	 ThemeService themeService;
 	@Autowired
 	 SubthemeService subthemeService;
+	@Autowired
+	ElectiveHierarchyService electiveHierarchyService;
      
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -58,19 +61,22 @@ public class HomeController {
 	}
 	
 	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET)  
-	 public String getCourseList(@RequestParam(value = "category", required = false, defaultValue = "0") int category,Locale locale, Model model) {  
+	 public String getCourseList(@RequestParam(value = "theme", required = false, defaultValue = "0") int theme,
+			 @RequestParam(value = "subtheme", required = false, defaultValue = "0") int subtheme,
+			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,
+			 Locale locale, Model model) {  
 		 
 		 List<Course> courseList;
 		 
-//		 if (category > 0)
-//		 {
-//			 courseList = courseService.getCourseList(category);  
-//		 }
-//		 else 
-//		 {
+		 if (theme > 0 || subtheme > 0 || category > 0)
+		 {
+			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,subtheme,category);  
+		 }
+		 else 
+		 {
 			 courseList = courseService.getCourseList();  
-//		 }
-//	  
+		 }
+	  
 	  List<Category> categoryList = categoryService.getCategoryList();
 	  List<Theme> themeList = themeService.getThemeList();
 	  List<Subtheme> subthemeList = subthemeService.getSubthemeList();

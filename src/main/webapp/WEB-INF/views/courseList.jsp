@@ -48,7 +48,7 @@ width : 580px;
  <center>  
     
    
- <form:form  method="GET" action="/CourseCatMVC/getCourseList">  
+ <form:form  method="GET" action="/electives/getCourseList">  
  <b>Course List | Ryerson University </b>  
    <div class="filter">Themes:
    <select name="theme" class="dropdown">
