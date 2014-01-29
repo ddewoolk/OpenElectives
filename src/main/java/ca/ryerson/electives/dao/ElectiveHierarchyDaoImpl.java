@@ -18,31 +18,37 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 	public DataSource dataSource;
 
 
-	public  List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId) {  
+	public  List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId, String discipline) {  
 		List<Course> courseList = new ArrayList<Course>();  
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String sql;
+		Object[] queryVar = new Object[10];
 
+		//Filter by Elective Hierarchy
 		if (categoryId > 0)
 		{
-			String sql = "SELECT * FROM COURSES WHERE COURSE_ID IN ( SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE CATEGORY_ID = ?)";  
-
-			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-			courseList = jdbcTemplate.query(sql, new Object [] {categoryId},  new CourseRowMapper());   
+			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN ( SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE CATEGORY_ID = ?)";  
+			queryVar[0] = categoryId;
 		}
 		else if (subthemeId > 0) {
-			String sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE SUB_THEME_ID = ?)";  
-
-			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-			courseList = jdbcTemplate.query(sql, new Object [] {subthemeId},  new CourseRowMapper());
+			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE SUB_THEME_ID = ?)";  
+			queryVar[0] = subthemeId;
+		}
+		else if (themeId > 0){
+			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE THEME_ID = ?)";  
+			queryVar[0] = themeId;
 		}
 		else {
-
-			String sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE THEME_ID = ?)";  
-
-			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-			courseList = jdbcTemplate.query(sql, new Object [] {themeId},  new CourseRowMapper());
-
+			sql = "SELECT * FROM COURSES WHERE 1 = ?";
+			queryVar[0] = 1;
 		}
 
+		//Filter by Discipline
+		sql += " AND LOWER(ACAD_ORG) LIKE LOWER(?)";
+		queryVar[1] = "%" + discipline + "%";
+
+
+		courseList = jdbcTemplate.query(sql, new Object [] {queryVar[0],queryVar[1]},  new CourseRowMapper());
 		return courseList;  
 	}  
 

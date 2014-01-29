@@ -64,13 +64,14 @@ public class HomeController {
 	 public String getCourseList(@RequestParam(value = "theme", required = false, defaultValue = "0") int theme,
 			 @RequestParam(value = "subtheme", required = false, defaultValue = "0") int subtheme,
 			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,
+			 @RequestParam(value = "discipline", required = false, defaultValue = "") String discipline,
 			 Locale locale, Model model) {  
 		 
 		 List<Course> courseList;
 		 
-		 if (theme > 0 || subtheme > 0 || category > 0)
+		 if (theme > 0 || subtheme > 0 || category > 0 || discipline != "")
 		 {
-			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,subtheme,category);  
+			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,subtheme,category,discipline);  
 		 }
 		 else 
 		 {
