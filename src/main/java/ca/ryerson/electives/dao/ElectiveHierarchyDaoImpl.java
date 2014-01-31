@@ -22,7 +22,7 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		List<Course> courseList = new ArrayList<Course>();  
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql;
-		Object[] queryVar = new Object[10];
+		Object[] queryVar = new Object[100];
 		String formattedPrereqs;
 		String formattedAntireqs;
 
@@ -50,14 +50,14 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		queryVar[1] = "%" + discipline + "%";
 
 		//Filter by Pre-requisites
-		sql += " AND LOWER(NVL(PRE_REQUISITES,'%')) LIKE LOWER(?)";
-		formattedPrereqs = prereqs.replace(",","%").replace(" ", "%");
-		queryVar[2] = "%" + formattedPrereqs + "%";	
+		sql += " AND REGEXP_LIKE(NVL(PRE_REQUISITES,'*'),?,'i')";
+		formattedPrereqs = prereqs.replace(",","*|*").replace(" ", "\\s");
+		queryVar[2] = "*" + formattedPrereqs + "*";	
 
 		//Filter by Anti-requisites
-		sql += " AND LOWER(NVL(ANTI_REQUISITES,'%')) LIKE LOWER(?)";
-		formattedAntireqs = antireqs.replace(",","%").replace(" ", "%");
-		queryVar[3] = "%" + formattedAntireqs + "%";	
+		sql += " AND REGEXP_LIKE(NVL(ANTI_REQUISITES,'*'),?,'i')";
+		formattedAntireqs = antireqs.replace(",","*|*").replace(" ", "\\s");
+		queryVar[3] = "*" + formattedAntireqs + "*";	
 
 
 		courseList = jdbcTemplate.query(sql, new Object [] {queryVar[0],queryVar[1],queryVar[2],queryVar[3]},  new CourseRowMapper());
