@@ -65,13 +65,15 @@ public class HomeController {
 			 @RequestParam(value = "subtheme", required = false, defaultValue = "0") int subtheme,
 			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,
 			 @RequestParam(value = "discipline", required = false, defaultValue = "") String discipline,
+			 @RequestParam(value = "prereqs", required = false, defaultValue = "") String prereqs,
+			 @RequestParam(value = "antireqs", required = false, defaultValue = "") String antireqs,
 			 Locale locale, Model model) {  
 		 
 		 List<Course> courseList;
 		 
-		 if (theme > 0 || subtheme > 0 || category > 0 || discipline != "")
+		 if (theme > 0 || subtheme > 0 || category > 0 || discipline != "" || prereqs != "" || antireqs != "")
 		 {
-			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,subtheme,category,discipline);  
+			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,subtheme,category,discipline,prereqs,antireqs);  
 		 }
 		 else 
 		 {

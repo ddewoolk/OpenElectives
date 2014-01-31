@@ -21,6 +21,12 @@ td {
 	text-align: center;
 }
 
+.header {
+	font-size: 22px;
+	width: 720px;
+	text-align: center;
+}
+
 .heading {
 	font-size: 18px;
 	color: white;
@@ -38,7 +44,7 @@ td {
 }
 
 .filter {
-	width: 700px;
+	width: 720px;
 	text-align: left;
 }
 
@@ -50,13 +56,18 @@ td {
 .input {
 	float: right;
 	width: 575px;
+	height: 18px;
 }
 
 .submit {
-	width: 200px;
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.submit input {
+	width: 200px;
+	height : 30px;
 }
 </style>
 </head>
@@ -65,7 +76,7 @@ td {
 
 
 		<form:form method="GET" action="/electives/getCourseList">
-			<b>Course List | Ryerson University </b>
+			<div class="header">Open Elective List</div>
 			<div class="filter">
 				Themes: <select name="theme" class="dropdown">
 					<option value=0>Select a Theme</option>
@@ -90,23 +101,34 @@ td {
 					</c:forEach>
 				</select>
 			</div>
+
 			<div class="filter">
 				Discipline: <input name="discipline" class="input" />
+			</div>
+			<div class="filter">
+				Pre-requisites: <input name="prereqs" class="input" />
+			</div>
+			<div class="filter">
+				Anti-requisites: <input name="antireqs" class="input" />
 			</div>
 			<div class="submit">
 				<input type="submit" value="Submit" />
 			</div>
 			<table border="1">
 				<tr>
-					<td class="heading">Course Id</td>
+					<td class="heading">Course No.</td>
 					<td class="heading">Name</td>
 					<td class="heading">Description</td>
+					<td class="heading">Pre-requisites</td>
+					<td class="heading">Anti-requisites</td>
 				</tr>
 				<c:forEach var="course" items="${courseList}">
 					<tr>
-						<td>${course.courseId}</td>
+						<td>${course.catalogNbr}</td>
 						<td>${course.courseTitle}</td>
 						<td class="bigcol">${course.calendarDescription}</td>
+						<td>${course.prerequisites}</td>
+						<td>${course.antirequisites}</td>
 					</tr>
 				</c:forEach>
 			</table>
