@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ca.ryerson.electives.domain.Category;
 import ca.ryerson.electives.domain.Course;
@@ -60,7 +61,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET)  
+	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET,headers="Accept=*/*")  
 	 public String getCourseList(@RequestParam(value = "theme", required = false, defaultValue = "0") int theme,
 			 @RequestParam(value = "subtheme", required = false, defaultValue = "0") int subtheme,
 			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,
@@ -91,5 +92,29 @@ public class HomeController {
 
 	  return "courseList";
 	 }  
+
+	 @RequestMapping(value = "/subthemes", method = RequestMethod.GET)
+	 public @ResponseBody
+	 List<Subtheme> subthemesForTheme(
+	 		@RequestParam(value = "theme", required = true) int theme) {
+	 	logger.debug("Finding Subthemes for Theme " + theme);
+	 	return this.subthemeService.getSubthemesForTheme(theme);
+	 }
+	 
+	 @RequestMapping(value = "/themecategories", method = RequestMethod.GET)
+	 public @ResponseBody
+	 List<Category> categoriesForTheme(
+	 		@RequestParam(value = "theme", required = true) int theme) {
+	 	logger.debug("Finding Categories for Theme " + theme);
+	 	return this.categoryService.getCategoriesForTheme(theme);
+	 }
+	 
+	 @RequestMapping(value = "/categories", method = RequestMethod.GET)
+	 public @ResponseBody
+	 List<Category> categoriesForSubtheme(
+	 		@RequestParam(value = "subtheme", required = true) int subtheme) {
+	 	logger.debug("Finding ategories for Subtheme " + subtheme);
+	 	return this.categoryService.getCategoriesForSubtheme(subtheme);
+	 }
 	 
 }

@@ -11,5 +11,6 @@ import ca.ryerson.electives.domain.Subtheme;
 public interface SubthemeService {  
   
  public List<Subtheme> getSubthemeList();  
+ public List<Subtheme> getSubthemesForTheme(int theme);
   
 } 

@@ -6,6 +6,61 @@
 <html>
 <head>
 <title>Open Electives List</title>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<c:url var="findSubthemesURL" value="/subthemes" />
+<c:url var="findThemeCategoriesURL" value="/themecategories" />
+<c:url var="findCategoriesURL" value="/categories" />
+
+<script type="text/javascript">
+$(document).ready(function() { 
+	$('#theme').change(
+		function() {
+			$.getJSON('${findSubthemesURL}', {
+				theme : $(this).val(),
+				ajax : 'true'
+			}, function(data) {
+				var html = '<option value="">Select from Valid Subthemes for this Theme</option>';
+				var len = data.length;
+				for ( var i = 0; i < len; i++) {
+					html += '<option value="' + data[i].subthemeId + '">'
+							+ data[i].name + '</option>';
+				}
+				html += '</option>';
+				$('#subtheme').html(html);
+			});
+			$.getJSON('${findThemeCategoriesURL}', {
+					theme : $(this).val(),
+					ajax : 'true'
+				}, function(data) {
+					var html = '<option value="">Select from Valid Categories for this Theme</option>';
+					var len = data.length;
+					for ( var i = 0; i < len; i++) {
+						html += '<option value="' + data[i].categoryId + '">'
+								+ data[i].name + '</option>';
+					}
+					html += '</option>';
+					$('#category').html(html);
+				});
+		});
+	$('#subtheme').change(
+			function() {
+				$.getJSON('${findCategoriesURL}', {
+						subtheme : $(this).val(),
+						ajax : 'true'
+					}, function(data) {
+						var html = '<option value="">Select from Valid Categories for this Subtheme</option>';
+						var len = data.length;
+						for ( var i = 0; i < len; i++) {
+							html += '<option value="' + data[i].categoryId + '">'
+									+ data[i].name + '</option>';
+						}
+						html += '</option>';
+						$('#category').html(html);
+					});
+			});
+});
+</script>
 <style>
 body {
 	font-size: 20px;
@@ -67,7 +122,7 @@ td {
 
 .submit input {
 	width: 200px;
-	height : 30px;
+	height: 30px;
 }
 </style>
 </head>
@@ -78,7 +133,7 @@ td {
 		<form:form method="GET" action="/electives/getCourseList">
 			<div class="header">Open Elective List</div>
 			<div class="filter">
-				Themes: <select name="theme" class="dropdown">
+				Themes: <select name="theme" id="theme" class="dropdown">
 					<option value=0>Select a Theme</option>
 					<c:forEach var="theme" items="${themeList}">
 						<option value="${theme.themeId}">${theme.name}</option>
@@ -86,7 +141,7 @@ td {
 				</select>
 			</div>
 			<div class="filter">
-				Subthemes: <select name="subtheme" class="dropdown">
+				Subthemes: <select name="subtheme" id="subtheme" class="dropdown">
 					<option value=0>Select a Subtheme</option>
 					<c:forEach var="subtheme" items="${subthemeList}">
 						<option value="${subtheme.subthemeId}">${subtheme.name}</option>
@@ -94,7 +149,7 @@ td {
 				</select>
 			</div>
 			<div class="filter">
-				Categories: <select name="category" class="dropdown">
+				Categories: <select name="category" id="category" class="dropdown">
 					<option value=0>Select a Category</option>
 					<c:forEach var="category" items="${categoryList}">
 						<option value="${category.categoryId}">${category.name}</option>

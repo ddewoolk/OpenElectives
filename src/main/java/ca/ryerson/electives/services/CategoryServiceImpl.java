@@ -20,5 +20,15 @@ public class CategoryServiceImpl implements CategoryService {
 	 public List<Category> getCategoryList() {  
 	  return categorydao.getCategoryList();  
 	 } 
+	
+	@Override  
+	 public List<Category> getCategoriesForTheme(int theme) {  
+	  return categorydao.getCategoriesForTheme(theme);  
+	 } 
+	
+	@Override  
+	 public List<Category> getCategoriesForSubtheme(int subtheme) {  
+	  return categorydao.getCategoriesForSubtheme(subtheme);  
+	 } 
 
 }

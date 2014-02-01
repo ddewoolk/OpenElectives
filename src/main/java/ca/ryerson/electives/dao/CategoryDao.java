@@ -10,4 +10,6 @@ import ca.ryerson.electives.domain.Category;
   
 public interface CategoryDao {  
  public List<Category> getCategoryList();  
+ public List<Category> getCategoriesForTheme(int theme); 
+ public List<Category> getCategoriesForSubtheme(int subtheme); 
 }  

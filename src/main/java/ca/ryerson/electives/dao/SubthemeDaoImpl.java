@@ -13,21 +13,30 @@ import ca.ryerson.electives.domain.Subtheme;
 import ca.ryerson.electives.jdbc.SubthemeRowMapper;
 
 public class SubthemeDaoImpl implements SubthemeDao {
-	
+
 	@Autowired
 	public DataSource dataSource;
 
 
 	public  List<Subtheme> getSubthemeList() {  
-	    	  List<Subtheme> subthemeList = new ArrayList<Subtheme>();  
-	    	  
-	    	  String sql = "SELECT * FROM SUB_THEMES";  
-	    	  
-	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-	    	  subthemeList = jdbcTemplate.query(sql, new SubthemeRowMapper());  
-	    	  return subthemeList;  
-	    	 }  
-	    
-	    
-	 
+		List<Subtheme> subthemeList = new ArrayList<Subtheme>();  
+
+		String sql = "SELECT * FROM SUB_THEMES";  
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+		subthemeList = jdbcTemplate.query(sql, new SubthemeRowMapper());  
+		return subthemeList;  
+	}  
+	
+	public  List<Subtheme> getSubthemesForTheme(int theme) {  
+		List<Subtheme> subthemeList = new ArrayList<Subtheme>();  
+
+		String sql = "SELECT * FROM SUB_THEMES WHERE THEME_ID = ?";  
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+		subthemeList = jdbcTemplate.query(sql, new Object[] {theme},new SubthemeRowMapper());  
+		return subthemeList;  
+	}   
+
+
 }
