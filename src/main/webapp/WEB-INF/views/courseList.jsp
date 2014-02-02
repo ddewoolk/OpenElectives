@@ -20,7 +20,7 @@ $(document).ready(function() {
 				theme : $(this).val(),
 				ajax : 'true'
 			}, function(data) {
-				var html = '<option value="">Select from Valid Subthemes for this Theme</option>';
+				var html = '<option value="0">Select from Valid Subthemes for this Theme</option>';
 				var len = data.length;
 				for ( var i = 0; i < len; i++) {
 					html += '<option value="' + data[i].subthemeId + '">'
@@ -33,7 +33,7 @@ $(document).ready(function() {
 					theme : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="">Select from Valid Categories for this Theme</option>';
+					var html = '<option value="0">Select from Valid Categories for this Theme</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
 						html += '<option value="' + data[i].categoryId + '">'
@@ -49,7 +49,7 @@ $(document).ready(function() {
 						subtheme : $(this).val(),
 						ajax : 'true'
 					}, function(data) {
-						var html = '<option value="">Select from Valid Categories for this Subtheme</option>';
+						var html = '<option value="0">Select from Valid Categories for this Subtheme</option>';
 						var len = data.length;
 						for ( var i = 0; i < len; i++) {
 							html += '<option value="' + data[i].categoryId + '">'

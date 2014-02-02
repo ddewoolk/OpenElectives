@@ -61,7 +61,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET,headers="Accept=*/*")  
+	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET)  
 	 public String getCourseList(@RequestParam(value = "theme", required = false, defaultValue = "0") int theme,
 			 @RequestParam(value = "subtheme", required = false, defaultValue = "0") int subtheme,
 			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,
