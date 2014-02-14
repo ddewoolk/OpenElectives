@@ -34,9 +34,9 @@
 	<beans:bean id="courseDao" class="ca.ryerson.electives.dao.CourseDaoImpl" />
 	<beans:bean id="courseService"
 		class="ca.ryerson.electives.services.CourseServiceImpl" />
-	<beans:bean id="categoryDao" class="ca.ryerson.electives.dao.CategoryDaoImpl" />
-	<beans:bean id="categoryService"
-		class="ca.ryerson.electives.services.CategoryServiceImpl" />
+	<beans:bean id="subcategoryDao" class="ca.ryerson.electives.dao.SubCategoryDaoImpl" />
+	<beans:bean id="subcategoryService"
+		class="ca.ryerson.electives.services.SubCategoryServiceImpl" />
 	<beans:bean id="themeDao" class="ca.ryerson.electives.dao.ThemeDaoImpl" />
 	<beans:bean id="themeService"
 		class="ca.ryerson.electives.services.ThemeServiceImpl" />

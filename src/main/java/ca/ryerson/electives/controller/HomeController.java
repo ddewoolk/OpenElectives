@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ca.ryerson.electives.domain.Category;
+import ca.ryerson.electives.domain.SubCategory;
 import ca.ryerson.electives.domain.Course;
 import ca.ryerson.electives.domain.Subtheme;
 import ca.ryerson.electives.domain.Theme;
-import ca.ryerson.electives.services.CategoryService;
+import ca.ryerson.electives.services.SubCategoryService;
 import ca.ryerson.electives.services.CourseService;
 import ca.ryerson.electives.services.ElectiveHierarchyService;
 import ca.ryerson.electives.services.SubthemeService;
@@ -34,7 +34,7 @@ public class HomeController {
 	@Autowired  
 	 CourseService courseService;
 	@Autowired
-     CategoryService categoryService;
+     SubCategoryService subcategoryService;
 	@Autowired
 	 ThemeService themeService;
 	@Autowired
@@ -81,11 +81,11 @@ public class HomeController {
 			 courseList = courseService.getCourseList();  
 		 }
 	  
-	  List<Category> categoryList = categoryService.getCategoryList();
+	  List<SubCategory> subcategoryList = subcategoryService.getSubCategoryList();
 	  List<Theme> themeList = themeService.getThemeList();
 	  List<Subtheme> subthemeList = subthemeService.getSubthemeList();
 
-	  model.addAttribute("categoryList",categoryList);
+	  model.addAttribute("subcategoryList",subcategoryList);
 	  model.addAttribute("courseList",courseList);
 	  model.addAttribute("themeList",themeList);
 	  model.addAttribute("subthemeList",subthemeList);
@@ -101,20 +101,20 @@ public class HomeController {
 	 	return this.subthemeService.getSubthemesForTheme(theme);
 	 }
 	 
-	 @RequestMapping(value = "/themecategories", method = RequestMethod.GET)
+	 @RequestMapping(value = "/themesubcategories", method = RequestMethod.GET)
 	 public @ResponseBody
-	 List<Category> categoriesForTheme(
+	 List<SubCategory> categoriesForTheme(
 	 		@RequestParam(value = "theme", required = true) int theme) {
-	 	logger.debug("Finding Categories for Theme " + theme);
-	 	return this.categoryService.getCategoriesForTheme(theme);
+	 	logger.debug("Finding Sub-Categories for Theme " + theme);
+	 	return this.subcategoryService.getSubCategoriesForTheme(theme);
 	 }
 	 
-	 @RequestMapping(value = "/categories", method = RequestMethod.GET)
+	 @RequestMapping(value = "/subcategories", method = RequestMethod.GET)
 	 public @ResponseBody
-	 List<Category> categoriesForSubtheme(
-	 		@RequestParam(value = "subtheme", required = true) int subtheme) {
-	 	logger.debug("Finding ategories for Subtheme " + subtheme);
-	 	return this.categoryService.getCategoriesForSubtheme(subtheme);
+	 List<SubCategory> categoriesForSubtheme(
+	 		@RequestParam(value = "category", required = true) int category) {
+	 	logger.debug("Finding Sub-categories for Category " + category);
+	 	return this.subcategoryService.getSubCategoriesForCategory(category);
 	 }
 	 
 }

@@ -9,8 +9,8 @@
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <c:url var="findSubthemesURL" value="/subthemes" />
-<c:url var="findThemeCategoriesURL" value="/themecategories" />
-<c:url var="findCategoriesURL" value="/categories" />
+<c:url var="findThemeCategoriesURL" value="/themesubcategories" />
+<c:url var="findCategoriesURL" value="/subcategories" />
 
 <script type="text/javascript">
 $(document).ready(function() { 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 				theme : $(this).val(),
 				ajax : 'true'
 			}, function(data) {
-				var html = '<option value="0">Select from Valid Subthemes for this Theme</option>';
+				var html = '<option value="0">Select from Valid Categories for this Theme</option>';
 				var len = data.length;
 				for ( var i = 0; i < len; i++) {
 					html += '<option value="' + data[i].subthemeId + '">'
@@ -33,14 +33,14 @@ $(document).ready(function() {
 					theme : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="0">Select from Valid Categories for this Theme</option>';
+					var html = '<option value="0">Select from Valid Sub-Categories for this Theme</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
-						html += '<option value="' + data[i].categoryId + '">'
+						html += '<option value="' + data[i].subcategoryId + '">'
 								+ data[i].name + '</option>';
 					}
 					html += '</option>';
-					$('#category').html(html);
+					$('#subcategory').html(html);
 				});
 		});
 	$('#subtheme').change(
@@ -49,14 +49,14 @@ $(document).ready(function() {
 						subtheme : $(this).val(),
 						ajax : 'true'
 					}, function(data) {
-						var html = '<option value="0">Select from Valid Categories for this Subtheme</option>';
+						var html = '<option value="0">Select from Valid Sub-Categories for this Category</option>';
 						var len = data.length;
 						for ( var i = 0; i < len; i++) {
-							html += '<option value="' + data[i].categoryId + '">'
+							html += '<option value="' + data[i].subcategoryId + '">'
 									+ data[i].name + '</option>';
 						}
 						html += '</option>';
-						$('#category').html(html);
+						$('#subcategory').html(html);
 					});
 			});
 });
@@ -149,10 +149,10 @@ td {
 				</select>
 			</div>
 			<div class="filter">
-				Categories: <select name="category" id="category" class="dropdown">
-					<option value=0>Select a Category</option>
-					<c:forEach var="category" items="${categoryList}">
-						<option value="${category.categoryId}">${category.name}</option>
+				SubCategories: <select name="subcategory" id="subcategory" class="dropdown">
+					<option value=0>Select a SubCategory</option>
+					<c:forEach var="subcategory" items="${subcategoryList}">
+						<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
 					</c:forEach>
 				</select>
 			</div>

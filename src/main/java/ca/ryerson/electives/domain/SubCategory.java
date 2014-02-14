@@ -1,25 +1,25 @@
 package ca.ryerson.electives.domain;
 
-public class Category {
-	private int categoryId;  
-	private int subThemeId;
+public class SubCategory {
+	private int subCategoryId;  
+	private int categoryId;
 	 private String name;  
 	 private String description;  
 	  
-	 public int getCategoryId() {  
-	  return categoryId;  
+	 public int getSubCategoryId() {  
+	  return subCategoryId;  
 	 }  
 	  
-	 public void setCategoryId(int categoryId) {  
-	  this.categoryId = categoryId;  
+	 public void setSubCategoryId(int subCategoryId) {  
+	  this.subCategoryId = subCategoryId;  
 	 }  
 	  
-	 public int getSubThemeId() {
-		return subThemeId;
+	 public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setSubThemeId(int subThemeId) {
-		this.subThemeId = subThemeId;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getName() {  
