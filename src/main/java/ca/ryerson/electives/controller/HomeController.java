@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ca.ryerson.electives.domain.SubCategory;
 import ca.ryerson.electives.domain.Course;
-import ca.ryerson.electives.domain.Subtheme;
+import ca.ryerson.electives.domain.Category;
 import ca.ryerson.electives.domain.Theme;
 import ca.ryerson.electives.services.SubCategoryService;
 import ca.ryerson.electives.services.CourseService;
 import ca.ryerson.electives.services.ElectiveHierarchyService;
-import ca.ryerson.electives.services.SubthemeService;
+import ca.ryerson.electives.services.CategoryService;
 import ca.ryerson.electives.services.ThemeService;
 
 /**
@@ -38,7 +38,7 @@ public class HomeController {
 	@Autowired
 	 ThemeService themeService;
 	@Autowired
-	 SubthemeService subthemeService;
+	 CategoryService categoryService;
 	@Autowired
 	ElectiveHierarchyService electiveHierarchyService;
      
@@ -83,27 +83,27 @@ public class HomeController {
 	  
 	  List<SubCategory> subcategoryList = subcategoryService.getSubCategoryList();
 	  List<Theme> themeList = themeService.getThemeList();
-	  List<Subtheme> subthemeList = subthemeService.getSubthemeList();
+	  List<Category> categoryList = categoryService.getCategoryList();
 
 	  model.addAttribute("subcategoryList",subcategoryList);
 	  model.addAttribute("courseList",courseList);
 	  model.addAttribute("themeList",themeList);
-	  model.addAttribute("subthemeList",subthemeList);
+	  model.addAttribute("categoryList",categoryList);
 
 	  return "courseList";
 	 }  
 
 	 @RequestMapping(value = "/subthemes", method = RequestMethod.GET)
 	 public @ResponseBody
-	 List<Subtheme> subthemesForTheme(
+	 List<Category> categoriesForTheme(
 	 		@RequestParam(value = "theme", required = true) int theme) {
-	 	logger.debug("Finding Subthemes for Theme " + theme);
-	 	return this.subthemeService.getSubthemesForTheme(theme);
+	 	logger.debug("Finding Categories for Theme " + theme);
+	 	return this.categoryService.getCategoriesForTheme(theme);
 	 }
 	 
 	 @RequestMapping(value = "/themesubcategories", method = RequestMethod.GET)
 	 public @ResponseBody
-	 List<SubCategory> categoriesForTheme(
+	 List<SubCategory> subcategoriesForTheme(
 	 		@RequestParam(value = "theme", required = true) int theme) {
 	 	logger.debug("Finding Sub-Categories for Theme " + theme);
 	 	return this.subcategoryService.getSubCategoriesForTheme(theme);

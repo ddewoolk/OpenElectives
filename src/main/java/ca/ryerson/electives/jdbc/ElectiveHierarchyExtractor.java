@@ -23,8 +23,8 @@ public class ElectiveHierarchyExtractor implements ResultSetExtractor<ElectiveHi
     
   electiveHierarchy.setElectiveHierarchyId(resultSet.getInt(1)); 
   electiveHierarchy.setThemeId(resultSet.getInt(2)); 
-  electiveHierarchy.setSubthemeId(resultSet.getInt(3));
-  electiveHierarchy.setCategoryId(resultSet.getInt(4));
+  electiveHierarchy.setCategoryId(resultSet.getInt(3));
+  electiveHierarchy.setSubCategoryId(resultSet.getInt(4));
   electiveHierarchy.setCourseId(resultSet.getInt(5));
   
   return electiveHierarchy;  

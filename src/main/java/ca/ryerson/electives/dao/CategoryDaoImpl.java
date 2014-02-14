@@ -9,32 +9,32 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ca.ryerson.electives.domain.Subtheme;
-import ca.ryerson.electives.jdbc.SubthemeRowMapper;
+import ca.ryerson.electives.domain.Category;
+import ca.ryerson.electives.jdbc.CategoryRowMapper;
 
-public class SubthemeDaoImpl implements SubthemeDao {
+public class CategoryDaoImpl implements CategoryDao {
 
 	@Autowired
 	public DataSource dataSource;
 
 
-	public  List<Subtheme> getSubthemeList() {  
-		List<Subtheme> subthemeList = new ArrayList<Subtheme>();  
+	public  List<Category> getCategoryList() {  
+		List<Category> subthemeList = new ArrayList<Category>();  
 
 		String sql = "SELECT * FROM SUB_THEMES";  
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-		subthemeList = jdbcTemplate.query(sql, new SubthemeRowMapper());  
+		subthemeList = jdbcTemplate.query(sql, new CategoryRowMapper());  
 		return subthemeList;  
 	}  
 	
-	public  List<Subtheme> getSubthemesForTheme(int theme) {  
-		List<Subtheme> subthemeList = new ArrayList<Subtheme>();  
+	public  List<Category> getCategoriesForTheme(int theme) {  
+		List<Category> subthemeList = new ArrayList<Category>();  
 
 		String sql = "SELECT * FROM SUB_THEMES WHERE THEME_ID = ?";  
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-		subthemeList = jdbcTemplate.query(sql, new Object[] {theme},new SubthemeRowMapper());  
+		subthemeList = jdbcTemplate.query(sql, new Object[] {theme},new CategoryRowMapper());  
 		return subthemeList;  
 	}   
 

@@ -4,8 +4,8 @@ public class ElectiveHierarchy {
 
 	private int electiveHierarchyId;
 	private int themeId;
-	private int subthemeId;
 	private int categoryId;
+	private int subCategoryId;
 	private int courseId;
 
 	public int getElectiveHierarchyId() {
@@ -24,20 +24,20 @@ public class ElectiveHierarchy {
 		this.themeId = themeId;
 	}
 	
-	public int getSubthemeId() {
-		return subthemeId;
-	}
-
-	public void setSubthemeId(int subthemeId) {
-		this.subthemeId = subthemeId;
-	}
-
 	public int getCategoryId() {
 		return categoryId;
 	}
 
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public int getSubCategoryId() {
+		return subCategoryId;
+	}
+
+	public void setSubCategoryId(int categoryId) {
+		this.subCategoryId = categoryId;
 	}
 
 	public int getCourseId() {

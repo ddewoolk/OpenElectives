@@ -40,9 +40,9 @@
 	<beans:bean id="themeDao" class="ca.ryerson.electives.dao.ThemeDaoImpl" />
 	<beans:bean id="themeService"
 		class="ca.ryerson.electives.services.ThemeServiceImpl" />
-	<beans:bean id="subthemeDao" class="ca.ryerson.electives.dao.SubthemeDaoImpl" />
-	<beans:bean id="subthemeService"
-		class="ca.ryerson.electives.services.SubthemeServiceImpl" />
+	<beans:bean id="categoryDao" class="ca.ryerson.electives.dao.CategoryDaoImpl" />
+	<beans:bean id="categoryService"
+		class="ca.ryerson.electives.services.CategoryServiceImpl" />
 	<beans:bean id="electiveHierarchyDao"
 		class="ca.ryerson.electives.dao.ElectiveHierarchyDaoImpl" />
 	<beans:bean id="electiveHierarchyService"

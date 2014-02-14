@@ -27,13 +27,13 @@ $(document).ready(function() {
 							+ data[i].name + '</option>';
 				}
 				html += '</option>';
-				$('#subtheme').html(html);
+				$('#category').html(html);
 			});
 			$.getJSON('${findThemeCategoriesURL}', {
 					theme : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="0">Select from Valid Sub-Categories for this Theme</option>';
+					var html = '<option value="0">Select from Valid SubCategories for this Theme</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
 						html += '<option value="' + data[i].subcategoryId + '">'
@@ -43,7 +43,7 @@ $(document).ready(function() {
 					$('#subcategory').html(html);
 				});
 		});
-	$('#subtheme').change(
+	$('#category').change(
 			function() {
 				$.getJSON('${findCategoriesURL}', {
 						subtheme : $(this).val(),
@@ -141,10 +141,10 @@ td {
 				</select>
 			</div>
 			<div class="filter">
-				Subthemes: <select name="subtheme" id="subtheme" class="dropdown">
-					<option value=0>Select a Subtheme</option>
-					<c:forEach var="subtheme" items="${subthemeList}">
-						<option value="${subtheme.subthemeId}">${subtheme.name}</option>
+				Categories: <select name="category" id="category" class="dropdown">
+					<option value=0>Select a Category</option>
+					<c:forEach var="category" items="${subthemeList}">
+						<option value="${category.categoryId}">${category.name}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -171,7 +171,7 @@ td {
 			</div>
 			<table border="1">
 				<tr>
-					<td class="heading">Course No.</td>
+					<td class="heading">Course</td>
 					<td class="heading">Name</td>
 					<td class="heading">Description</td>
 					<td class="heading">Pre-requisites</td>
@@ -179,7 +179,7 @@ td {
 				</tr>
 				<c:forEach var="course" items="${courseList}">
 					<tr>
-						<td>${course.catalogNbr}</td>
+						<td>${course.subject} ${course.catalogNbr}</td>
 						<td>${course.courseTitle}</td>
 						<td class="bigcol">${course.calendarDescription}</td>
 						<td>${course.prerequisites}</td>
