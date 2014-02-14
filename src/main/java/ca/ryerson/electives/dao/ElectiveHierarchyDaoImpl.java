@@ -45,7 +45,7 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 			queryVar[0] = 1;
 		}
 
-		//Filter by Discipline
+		//Filter by Discipline/Subject
 		sql += " AND LOWER(NVL(ACAD_ORG,'%')) LIKE LOWER(?) "
 			+  "OR LOWER(NVL(SUBJECT,'%')) LIKE LOWER(?)";
 		queryVar[1] = "%" + discipline + "%";
