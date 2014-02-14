@@ -46,21 +46,23 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		}
 
 		//Filter by Discipline
-		sql += " AND LOWER(NVL(ACAD_ORG,'%')) LIKE LOWER(?)";
+		sql += " AND LOWER(NVL(ACAD_ORG,'%')) LIKE LOWER(?) "
+			+  "OR LOWER(NVL(SUBJECT,'%')) LIKE LOWER(?)";
 		queryVar[1] = "%" + discipline + "%";
+		queryVar[2] = "%" + discipline + "%";
 
 		//Filter by Pre-requisites
 		sql += " AND REGEXP_LIKE(NVL(PRE_REQUISITES,'*'),?,'i')";
 		formattedPrereqs = prereqs.replace(",","*|*").replace(" ", "\\s");
-		queryVar[2] = "*" + formattedPrereqs + "*";	
+		queryVar[3] = "*" + formattedPrereqs + "*";	
 
 		//Filter by Anti-requisites
 		sql += " AND REGEXP_LIKE(NVL(ANTI_REQUISITES,'*'),?,'i')";
 		formattedAntireqs = antireqs.replace(",","*|*").replace(" ", "\\s");
-		queryVar[3] = "*" + formattedAntireqs + "*";	
+		queryVar[4] = "*" + formattedAntireqs + "*";	
 
 
-		courseList = jdbcTemplate.query(sql, new Object [] {queryVar[0],queryVar[1],queryVar[2],queryVar[3]},  new CourseRowMapper());
+		courseList = jdbcTemplate.query(sql, new Object [] {queryVar[0],queryVar[1],queryVar[2],queryVar[3],queryVar[4]},  new CourseRowMapper());
 		return courseList;  
 	}  
 

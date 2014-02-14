@@ -21,7 +21,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public  List<Category> getCategoryList() {  
 		List<Category> subthemeList = new ArrayList<Category>();  
 
-		String sql = "SELECT * FROM SUB_THEMES";  
+		String sql = "SELECT * FROM CATEGORIES";  
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 		subthemeList = jdbcTemplate.query(sql, new CategoryRowMapper());  
@@ -31,7 +31,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public  List<Category> getCategoriesForTheme(int theme) {  
 		List<Category> subthemeList = new ArrayList<Category>();  
 
-		String sql = "SELECT * FROM SUB_THEMES WHERE THEME_ID = ?";  
+		String sql = "SELECT * FROM CATEGORIES WHERE THEME_ID = ?";  
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 		subthemeList = jdbcTemplate.query(sql, new Object[] {theme},new CategoryRowMapper());  

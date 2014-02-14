@@ -21,7 +21,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	public  List<SubCategory> getSubCategoryList() {  
 	    	  List<SubCategory> categoryList = new ArrayList<SubCategory>();  
 	    	  
-	    	  String sql = "SELECT * FROM CATEGORIES";  
+	    	  String sql = "SELECT * FROM SUB_CATEGORIES";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 	    	  categoryList = jdbcTemplate.query(sql, new SubCategoryRowMapper());  
@@ -32,8 +32,8 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	public  List<SubCategory> getSubCategoriesForTheme(int theme) {  
 	    	  List<SubCategory> categoryList = new ArrayList<SubCategory>();  
 	    	  
-	    	  String sql = "SELECT * FROM CATEGORIES WHERE SUB_THEME_ID IN ( "
-	    	  			+  "SELECT SUB_THEME_ID FROM SUB_THEMES WHERE THEME_ID = ?)";  
+	    	  String sql = "SELECT * FROM SUB_CATEGORIES WHERE CATEGORY_ID IN ( "
+	    	  			+  "SELECT CATEGORY_ID FROM CATEGORIES WHERE THEME_ID = ?)";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 	    	  categoryList = jdbcTemplate.query(sql,new Object[] {theme}, new SubCategoryRowMapper());  
@@ -44,7 +44,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
    	public  List<SubCategory> getSubCategoriesForCategory(int category) {  
    	    	  List<SubCategory> categoryList = new ArrayList<SubCategory>();  
    	    	  
-   	    	  String sql = "SELECT * FROM CATEGORIES WHERE SUB_THEME_ID = ?";  
+   	    	  String sql = "SELECT * FROM SUB_CATEGORIES WHERE CATEGORY_ID = ?";  
    	    	  
    	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
    	    	  categoryList = jdbcTemplate.query(sql,new Object[] {category}, new SubCategoryRowMapper());  
