@@ -18,7 +18,7 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 	public DataSource dataSource;
 
 	@Override
-	public  List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId, String discipline, String prereqs, String antireqs) {  
+	public  List<Course> getCourseListFromHierarchy(int themeId, int categoryId, int subcategoryId, String discipline, String prereqs, String antireqs) {  
 		List<Course> courseList = new ArrayList<Course>();  
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql;
@@ -27,14 +27,14 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		String formattedAntireqs;
 
 		//Filter by Elective Hierarchy
-		if (categoryId > 0)
+		if (subcategoryId > 0)
 		{
-			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN ( SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE CATEGORY_ID = ?)";  
-			queryVar[0] = categoryId;
+			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN ( SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE SUB_CATEGORY_ID = ?)";  
+			queryVar[0] = subcategoryId;
 		}
-		else if (subthemeId > 0) {
-			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE SUB_THEME_ID = ?)";  
-			queryVar[0] = subthemeId;
+		else if (categoryId > 0) {
+			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE CATEGORY_ID = ?)";  
+			queryVar[0] = categoryId;
 		}
 		else if (themeId > 0){
 			sql = "SELECT * FROM COURSES WHERE COURSE_ID IN (SELECT COURSE_ID FROM ELECTIVE_HIERARCHY WHERE THEME_ID = ?)";  
@@ -46,8 +46,8 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		}
 
 		//Filter by Discipline/Subject
-		sql += " AND LOWER(NVL(ACAD_ORG,'%')) LIKE LOWER(?) "
-			+  "OR LOWER(NVL(SUBJECT,'%')) LIKE LOWER(?)";
+		sql += " AND (LOWER(NVL(ACAD_ORG,'%')) LIKE LOWER(?) "
+			+  "OR LOWER(NVL(SUBJECT,'%')) = LOWER(?))";
 		queryVar[1] = "%" + discipline + "%";
 		queryVar[2] = "%" + discipline + "%";
 

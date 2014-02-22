@@ -63,8 +63,8 @@ public class HomeController {
 	
 	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET)  
 	 public String getCourseList(@RequestParam(value = "theme", required = false, defaultValue = "0") int theme,
-			 @RequestParam(value = "subtheme", required = false, defaultValue = "0") int subtheme,
 			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,
+			 @RequestParam(value = "subcategory", required = false, defaultValue = "0") int subcategory,
 			 @RequestParam(value = "discipline", required = false, defaultValue = "") String discipline,
 			 @RequestParam(value = "prereqs", required = false, defaultValue = "") String prereqs,
 			 @RequestParam(value = "antireqs", required = false, defaultValue = "") String antireqs,
@@ -72,9 +72,9 @@ public class HomeController {
 		 
 		 List<Course> courseList;
 		 
-		 if (theme > 0 || subtheme > 0 || category > 0 || discipline != "" || prereqs != "" || antireqs != "")
+		 if (theme > 0 || category > 0 || subcategory > 0 || discipline != "" || prereqs != "" || antireqs != "")
 		 {
-			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,subtheme,category,discipline,prereqs,antireqs);  
+			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,category,subcategory,discipline,prereqs,antireqs);  
 		 }
 		 else 
 		 {
@@ -93,7 +93,7 @@ public class HomeController {
 	  return "courseList";
 	 }  
 
-	 @RequestMapping(value = "/subthemes", method = RequestMethod.GET)
+	 @RequestMapping(value = "/categories", method = RequestMethod.GET)
 	 public @ResponseBody
 	 List<Category> categoriesForTheme(
 	 		@RequestParam(value = "theme", required = true) int theme) {
@@ -103,7 +103,7 @@ public class HomeController {
 	 
 	 @RequestMapping(value = "/themesubcategories", method = RequestMethod.GET)
 	 public @ResponseBody
-	 List<SubCategory> subcategoriesForTheme(
+	 List<SubCategory> subCategoriesForTheme(
 	 		@RequestParam(value = "theme", required = true) int theme) {
 	 	logger.debug("Finding Sub-Categories for Theme " + theme);
 	 	return this.subcategoryService.getSubCategoriesForTheme(theme);
@@ -111,7 +111,7 @@ public class HomeController {
 	 
 	 @RequestMapping(value = "/subcategories", method = RequestMethod.GET)
 	 public @ResponseBody
-	 List<SubCategory> categoriesForSubtheme(
+	 List<SubCategory> subCategoriesForCategory(
 	 		@RequestParam(value = "category", required = true) int category) {
 	 	logger.debug("Finding Sub-categories for Category " + category);
 	 	return this.subcategoryService.getSubCategoriesForCategory(category);

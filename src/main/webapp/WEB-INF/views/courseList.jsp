@@ -8,35 +8,35 @@
 <title>Open Electives List</title>
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<c:url var="findSubthemesURL" value="/subthemes" />
-<c:url var="findThemeCategoriesURL" value="/themesubcategories" />
-<c:url var="findCategoriesURL" value="/subcategories" />
+<c:url var="findCategoriesURL" value="/categories" />
+<c:url var="findThemeSubCategoriesURL" value="/themesubcategories" />
+<c:url var="findSubCategoriesURL" value="/subcategories" />
 
 <script type="text/javascript">
 $(document).ready(function() { 
 	$('#theme').change(
 		function() {
-			$.getJSON('${findSubthemesURL}', {
+			$.getJSON('${findCategoriesURL}', {
 				theme : $(this).val(),
 				ajax : 'true'
 			}, function(data) {
 				var html = '<option value="0">Select from Valid Categories for this Theme</option>';
 				var len = data.length;
 				for ( var i = 0; i < len; i++) {
-					html += '<option value="' + data[i].subthemeId + '">'
+					html += '<option value="' + data[i].categoryId + '">'
 							+ data[i].name + '</option>';
 				}
 				html += '</option>';
 				$('#category').html(html);
 			});
-			$.getJSON('${findThemeCategoriesURL}', {
+			$.getJSON('${findThemeSubCategoriesURL}', {
 					theme : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
 					var html = '<option value="0">Select from Valid SubCategories for this Theme</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
-						html += '<option value="' + data[i].subcategoryId + '">'
+						html += '<option value="' + data[i].subCategoryId + '">'
 								+ data[i].name + '</option>';
 					}
 					html += '</option>';
@@ -45,14 +45,14 @@ $(document).ready(function() {
 		});
 	$('#category').change(
 			function() {
-				$.getJSON('${findCategoriesURL}', {
+				$.getJSON('${findSubCategoriesURL}', {
 						subtheme : $(this).val(),
 						ajax : 'true'
 					}, function(data) {
 						var html = '<option value="0">Select from Valid Sub-Categories for this Category</option>';
 						var len = data.length;
 						for ( var i = 0; i < len; i++) {
-							html += '<option value="' + data[i].subcategoryId + '">'
+							html += '<option value="' + data[i].subCategoryId + '">'
 									+ data[i].name + '</option>';
 						}
 						html += '</option>';
@@ -143,7 +143,7 @@ td {
 			<div class="filter">
 				Categories: <select name="category" id="category" class="dropdown">
 					<option value=0>Select a Category</option>
-					<c:forEach var="category" items="${subthemeList}">
+					<c:forEach var="category" items="${categoryList}">
 						<option value="${category.categoryId}">${category.name}</option>
 					</c:forEach>
 				</select>
@@ -152,7 +152,7 @@ td {
 				SubCategories: <select name="subcategory" id="subcategory" class="dropdown">
 					<option value=0>Select a SubCategory</option>
 					<c:forEach var="subcategory" items="${subcategoryList}">
-						<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
+						<option value="${subcategory.subCategoryId}">${subCategory.name}</option>
 					</c:forEach>
 				</select>
 			</div>
