@@ -23,7 +23,7 @@ public class CourseExtractor implements ResultSetExtractor<Course> {
     
   course.setCourseId(resultSet.getInt(1));  
   course.setSubject(resultSet.getString(2));  
-  course.setCatalogNbr(resultSet.getInt(3)); 
+  course.setCatalogNbr(resultSet.getString(3)); 
   course.setCourseTitle(resultSet.getString(4));
   course.setAcadGroup(resultSet.getString(5));
   course.setAcadOrg(resultSet.getString(6));

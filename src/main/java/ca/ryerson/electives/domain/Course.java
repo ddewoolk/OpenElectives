@@ -3,7 +3,7 @@ package ca.ryerson.electives.domain;
 public class Course {
 	private int courseId; 
 	private String subject;
-	private int catalogNbr;
+	private String catalogNbr;
 	private String courseTitle;
 	private String acadGroup;
 	private String acadOrg;
@@ -28,11 +28,11 @@ public class Course {
 		this.subject = subject;
 	} 
 	
-	public int getCatalogNbr() {
+	public String getCatalogNbr() {
 		return catalogNbr;
 	}
 
-	public void setCatalogNbr(int catalogNbr) {
+	public void setCatalogNbr(String catalogNbr) {
 		this.catalogNbr = catalogNbr;
 	}
 
