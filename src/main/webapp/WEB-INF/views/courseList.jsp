@@ -33,7 +33,7 @@ $(document).ready(function() {
 					theme : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
-					var html = '<option value="0">Select from Valid SubCategories for this Theme</option>';
+					var html = '<option value="0">Select from Valid Sub-Categories for this Theme</option>';
 					var len = data.length;
 					for ( var i = 0; i < len; i++) {
 						html += '<option value="' + data[i].subCategoryId + '">'
@@ -99,7 +99,7 @@ td {
 }
 
 .filter {
-	width: 720px;
+	width: 760px;
 	text-align: left;
 }
 
@@ -157,8 +157,8 @@ td {
 				</select>
 			</div>
 			<div class="filter">
-				SubCategories: <select name="subcategory" id="subcategory" class="dropdown">
-					<option value=0>Select a SubCategory</option>
+				Sub-Categories: <select name="subcategory" id="subcategory" class="dropdown">
+					<option value=0>Select a Sub Category</option>
 					<c:forEach var="subcategory" items="${subcategoryList}">
 						<option value="${subcategory.subCategoryId}">${subCategory.name}</option>
 					</c:forEach>
@@ -166,7 +166,7 @@ td {
 			</div>
 
 			<div class="filter">
-				Discipline: <input name="discipline" class="input" />
+				Discipline/Subject: <input name="discipline" class="input" />
 			</div>
 			<div class="filter">
 				Pre-requisites: <input name="prereqs" class="input" />
@@ -182,6 +182,8 @@ td {
 					<td class="heading">Course</td>
 					<td class="heading">Name</td>
 					<td class="heading">Description</td>
+					<td class="heading">Academic Organization</td>
+					<td class="heading">Academic Discipline</td>
 					<td class="heading">Pre-requisites</td>
 					<td class="heading">Anti-requisites</td>
 				</tr>
@@ -190,6 +192,8 @@ td {
 						<td>${course.subject} ${course.catalogNbr}</td>
 						<td>${course.courseTitle}</td>
 						<td class="bigcol">${course.calendarDescription}</td>
+						<td>${course.acadGroup}</td>
+						<td>${course.acadOrg}</td>
 						<td>${course.prerequisites}</td>
 						<td>${course.antirequisites}</td>
 					</tr>
