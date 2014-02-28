@@ -24,7 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-    <!-- Jackson for JSON Mapping -->
+	<!-- Jackson for JSON Mapping -->
 	<beans:bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
@@ -34,19 +34,28 @@
 	<beans:bean id="courseDao" class="ca.ryerson.electives.dao.CourseDaoImpl" />
 	<beans:bean id="courseService"
 		class="ca.ryerson.electives.services.CourseServiceImpl" />
+
 	<beans:bean id="subcategoryDao" class="ca.ryerson.electives.dao.SubCategoryDaoImpl" />
 	<beans:bean id="subcategoryService"
 		class="ca.ryerson.electives.services.SubCategoryServiceImpl" />
+
 	<beans:bean id="themeDao" class="ca.ryerson.electives.dao.ThemeDaoImpl" />
 	<beans:bean id="themeService"
 		class="ca.ryerson.electives.services.ThemeServiceImpl" />
+
 	<beans:bean id="categoryDao" class="ca.ryerson.electives.dao.CategoryDaoImpl" />
 	<beans:bean id="categoryService"
 		class="ca.ryerson.electives.services.CategoryServiceImpl" />
+
 	<beans:bean id="electiveHierarchyDao"
 		class="ca.ryerson.electives.dao.ElectiveHierarchyDaoImpl" />
 	<beans:bean id="electiveHierarchyService"
 		class="ca.ryerson.electives.services.ElectiveHierarchyServiceImpl" />
+
+	<beans:bean id="semesterDao" class="ca.ryerson.electives.dao.SemesterDaoImpl" />
+	<beans:bean id="semesterService"
+		class="ca.ryerson.electives.services.SemesterServiceImpl" />
+
 
 	<!-- declare H2 datasource bean -->
 	<!-- <beans:bean id="dataSource" -->

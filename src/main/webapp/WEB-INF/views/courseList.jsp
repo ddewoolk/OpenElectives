@@ -133,6 +133,14 @@ td {
 		<form:form method="GET" action="/electives/getCourseList">
 			<div class="header">Open Elective List</div>
 			<div class="filter">
+				Semesters: <select name="semester" id="semester" class="dropdown">
+					<option value=0>Select a Semester</option>
+					<c:forEach var="semester" items="${semesterList}">
+						<option value="${semester.semesterId}">${semester.name}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="filter">
 				Themes: <select name="theme" id="theme" class="dropdown">
 					<option value=0>Select a Theme</option>
 					<c:forEach var="theme" items="${themeList}">

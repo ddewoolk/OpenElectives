@@ -13,16 +13,16 @@ import ca.ryerson.electives.domain.Course;
 public class CourseServiceImpl implements CourseService {
 
 	@Autowired  
-	 CourseDao coursedao;
+	 CourseDao courseDao;
 	
 	@Override  
 	 public List<Course> getCourseList() {  
-	  return coursedao.getCourseList();  
+	  return courseDao.getCourseList();  
 	 } 
 	
 	@Override  
 	 public List<Course> getCourseList(int categoryId) {  
-	  return coursedao.getCourseList(categoryId);  
+	  return courseDao.getCourseList(categoryId);  
 	 } 
 
 }

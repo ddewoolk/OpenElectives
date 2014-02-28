@@ -20,8 +20,8 @@ public class ElectiveHierarchyServiceImpl implements ElectiveHierarchyService {
 	
 	
 	@Override  
-	 public List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId,String discipline, String prereqs, String antireqs) {  
-	  return electiveHierarchyDao.getCourseListFromHierarchy(themeId, subthemeId, categoryId,discipline,prereqs, antireqs);  
+	 public List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId,String discipline, String prereqs, String antireqs, int semesterId) {  
+	  return electiveHierarchyDao.getCourseListFromHierarchy(themeId, subthemeId, categoryId,discipline,prereqs, antireqs, semesterId);  
 	 } 
 
 }

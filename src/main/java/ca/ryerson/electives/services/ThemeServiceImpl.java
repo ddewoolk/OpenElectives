@@ -14,11 +14,11 @@ import ca.ryerson.electives.domain.Theme;
 public class ThemeServiceImpl implements ThemeService {
 
 	@Autowired  
-	 ThemeDao themedao;
+	 ThemeDao themeDao;
 	
 	@Override  
 	 public List<Theme> getThemeList() {  
-	  return themedao.getThemeList();  
+	  return themeDao.getThemeList();  
 	 } 
 
 }

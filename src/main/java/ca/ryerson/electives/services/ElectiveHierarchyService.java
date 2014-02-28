@@ -10,6 +10,6 @@ import ca.ryerson.electives.domain.Course;
   
 public interface ElectiveHierarchyService {  
   
- public List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId, String discipline,String prereqs, String antireqs);  
+ public List<Course> getCourseListFromHierarchy(int themeId, int subthemeId, int categoryId, String discipline,String prereqs, String antireqs,int semesterId);  
   
 } 

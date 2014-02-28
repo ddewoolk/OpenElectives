@@ -1,6 +1,8 @@
 package ca.ryerson.electives.domain;
 
+
 public class Course {
+	
 	private int courseId; 
 	private String subject;
 	private String catalogNbr;
@@ -10,7 +12,6 @@ public class Course {
 	private String calendarDescription; 
 	private String prerequisites;
 	private String antirequisites;
-
 
 	public int getCourseId() {  
 		return courseId;  
@@ -84,8 +85,5 @@ public class Course {
 		this.antirequisites = antirequisites;
 	}
 
-	
-
- 
 
 }

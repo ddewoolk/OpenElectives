@@ -16,15 +16,15 @@ import ca.ryerson.electives.domain.Category;
 public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired  
-	CategoryDao categorydao;
+	CategoryDao categoryDao;
 
 	@Override  
 	public List<Category> getCategoryList() {  
-		return categorydao.getCategoryList();  
+		return categoryDao.getCategoryList();  
 	} 
 
 	@Override  
 	public List<Category> getCategoriesForTheme(int theme) {  
-		return categorydao.getCategoriesForTheme(theme);  
+		return categoryDao.getCategoriesForTheme(theme);  
 	} 
 }

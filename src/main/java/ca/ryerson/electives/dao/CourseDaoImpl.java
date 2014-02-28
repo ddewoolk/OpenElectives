@@ -1,15 +1,14 @@
 package ca.ryerson.electives.dao;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ArrayList;  
-
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import ca.ryerson.electives.domain.Course;  
+import ca.ryerson.electives.domain.Course;
 import ca.ryerson.electives.jdbc.CourseRowMapper;
 
 public class CourseDaoImpl implements CourseDao {
@@ -32,12 +31,12 @@ public class CourseDaoImpl implements CourseDao {
 	public  List<Course> getCourseList(int categoryId) {  
   	  List<Course> courseList = new ArrayList<Course>();  
   	  
-  	  String sql = "select * from COURSE where categoryId = ?";  
+  	  String sql = "select * from COURSES where categoryId = ?";  
   	  
   	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
   	  courseList = jdbcTemplate.query(sql, new Object [] {categoryId}, new CourseRowMapper());  
   	  return courseList;  
   	 }      
-	    
+	  
 	 
 }

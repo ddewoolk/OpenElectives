@@ -6,17 +6,17 @@ package ca.ryerson.electives.jdbc;
  */  
   
   
-import java.sql.ResultSet;  
-import java.sql.SQLException;  
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import org.springframework.dao.DataAccessException;  
-import org.springframework.jdbc.core.ResultSetExtractor;  
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
-import ca.ryerson.electives.domain.Course;  
+import ca.ryerson.electives.domain.Course;
   
 public class CourseExtractor implements ResultSetExtractor<Course> {  
   
- public Course extractData(ResultSet resultSet) throws SQLException,  
+public Course extractData(ResultSet resultSet) throws SQLException,  
    DataAccessException {  
     
   Course course = new Course();  
@@ -31,7 +31,6 @@ public class CourseExtractor implements ResultSetExtractor<Course> {
   course.setPrerequisites(resultSet.getString(8));
   course.setAntirequisites(resultSet.getString(9));
   
-    
   return course;  
  }  
   

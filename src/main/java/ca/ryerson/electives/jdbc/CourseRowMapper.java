@@ -14,8 +14,8 @@ public class CourseRowMapper implements RowMapper<Course> {
   
  @Override  
  public Course mapRow(ResultSet resultSet, int line) throws SQLException {  
-  CourseExtractor userExtractor = new CourseExtractor();  
-  return userExtractor.extractData(resultSet);  
+  CourseExtractor courseExtractor = new CourseExtractor();  
+  return courseExtractor.extractData(resultSet);  
  }  
   
 }  

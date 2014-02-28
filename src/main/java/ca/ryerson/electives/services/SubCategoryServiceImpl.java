@@ -14,21 +14,21 @@ import ca.ryerson.electives.domain.SubCategory;
 public class SubCategoryServiceImpl implements SubCategoryService {
 
 	@Autowired  
-	 SubCategoryDao subcategorydao;
+	 SubCategoryDao subcategoryDao;
 	
 	@Override  
 	 public List<SubCategory> getSubCategoryList() {  
-	  return subcategorydao.getSubCategoryList();  
+	  return subcategoryDao.getSubCategoryList();  
 	 } 
 	
 	@Override  
 	 public List<SubCategory> getSubCategoriesForTheme(int theme) {  
-	  return subcategorydao.getSubCategoriesForTheme(theme);  
+	  return subcategoryDao.getSubCategoriesForTheme(theme);  
 	 } 
 	
 	@Override  
 	 public List<SubCategory> getSubCategoriesForCategory(int category) {  
-	  return subcategorydao.getSubCategoriesForCategory(category);  
+	  return subcategoryDao.getSubCategoriesForCategory(category);  
 	 } 
 
 }

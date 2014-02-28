@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ca.ryerson.electives.domain.Semester;
 import ca.ryerson.electives.domain.SubCategory;
 import ca.ryerson.electives.domain.Course;
 import ca.ryerson.electives.domain.Category;
 import ca.ryerson.electives.domain.Theme;
+import ca.ryerson.electives.services.SemesterService;
 import ca.ryerson.electives.services.SubCategoryService;
 import ca.ryerson.electives.services.CourseService;
 import ca.ryerson.electives.services.ElectiveHierarchyService;
@@ -41,6 +43,8 @@ public class HomeController {
 	 CategoryService categoryService;
 	@Autowired
 	ElectiveHierarchyService electiveHierarchyService;
+	@Autowired
+	SemesterService semesterService;
      
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -68,19 +72,21 @@ public class HomeController {
 			 @RequestParam(value = "discipline", required = false, defaultValue = "") String discipline,
 			 @RequestParam(value = "prereqs", required = false, defaultValue = "") String prereqs,
 			 @RequestParam(value = "antireqs", required = false, defaultValue = "") String antireqs,
+			 @RequestParam(value = "semester", required = false, defaultValue = "0") int semester,
 			 Locale locale, Model model) {  
 		 
 		 List<Course> courseList;
 		 
-		 if (theme > 0 || category > 0 || subcategory > 0 || discipline != "" || prereqs != "" || antireqs != "")
+		 if (theme > 0 || category > 0 || subcategory > 0 || discipline != "" || prereqs != "" || antireqs != "" || semester > 0)
 		 {
-			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,category,subcategory,discipline,prereqs,antireqs);  
+			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,category,subcategory,discipline,prereqs,antireqs,semester);  
 		 }
 		 else 
 		 {
 			 courseList = courseService.getCourseList();  
 		 }
 	  
+	  List<Semester> semesterList = semesterService.getActiveSemesterList(); 
 	  List<SubCategory> subcategoryList = subcategoryService.getSubCategoryList();
 	  List<Theme> themeList = themeService.getThemeList();
 	  List<Category> categoryList = categoryService.getCategoryList();
@@ -89,8 +95,10 @@ public class HomeController {
 	  model.addAttribute("courseList",courseList);
 	  model.addAttribute("themeList",themeList);
 	  model.addAttribute("categoryList",categoryList);
+	  model.addAttribute("semesterList",semesterList);
 
 	  return "courseList";
+	  
 	 }  
 
 	 @RequestMapping(value = "/categories", method = RequestMethod.GET)

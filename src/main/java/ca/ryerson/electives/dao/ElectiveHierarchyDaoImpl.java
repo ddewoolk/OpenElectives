@@ -18,7 +18,7 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 	public DataSource dataSource;
 
 	@Override
-	public  List<Course> getCourseListFromHierarchy(int themeId, int categoryId, int subcategoryId, String discipline, String prereqs, String antireqs) {  
+	public  List<Course> getCourseListFromHierarchy(int themeId, int categoryId, int subcategoryId, String discipline, String prereqs, String antireqs, int semesterId) {  
 		List<Course> courseList = new ArrayList<Course>();  
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql;
@@ -60,9 +60,20 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		sql += " AND REGEXP_LIKE(NVL(ANTI_REQUISITES,'*'),?,'i')";
 		formattedAntireqs = antireqs.replace(",","*|*").replace(" ", "\\s");
 		queryVar[4] = "*" + formattedAntireqs + "*";	
+		
+		//Filter by Semester
+		if (semesterId > 0){
+			sql += " AND COURSE_ID IN (SELECT COURSE_ID FROM SEMESTER_OFFERINGS WHERE SEMESTER_ID = ?)";  
+			queryVar[5] = semesterId;
+		}
+		else {
+			sql += " AND 1 = ?";
+			queryVar[5] = 1;	
+		}
+			
 
 
-		courseList = jdbcTemplate.query(sql, new Object [] {queryVar[0],queryVar[1],queryVar[2],queryVar[3],queryVar[4]},  new CourseRowMapper());
+		courseList = jdbcTemplate.query(sql, new Object [] {queryVar[0],queryVar[1],queryVar[2],queryVar[3],queryVar[4],queryVar[5]},  new CourseRowMapper());
 		return courseList;  
 	}  
 
