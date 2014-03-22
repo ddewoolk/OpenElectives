@@ -70,10 +70,10 @@
 	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver " />
-		<beans:property name="url"
-			value="jdbc:oracle:thin:CommunitySvcs/Password1@localhost:1521/socialwk" />
-		<!--  <beans:property name="url"-->
-		<!-- 	value="jdbc:oracle:thin:communitysvcs/fc00bc1@oracollab.semiprodint.ryerson.ca:1521:CFTEST" /> -->
+		<!-- <beans:property name="url"-->
+		<!-- 	value="jdbc:oracle:thin:CommunitySvcs/Password1@localhost:1521/socialwk" />-->
+		 <beans:property name="url"
+			value="jdbc:oracle:thin:communitysvcs/fc00bc1@oracollab.semiprodint.ryerson.ca:1521:CFTEST" /> 
 	</beans:bean>
 
 
