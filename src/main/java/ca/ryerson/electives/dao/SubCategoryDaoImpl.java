@@ -19,36 +19,36 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 
     @Override
 	public  List<SubCategory> getSubCategoryList() {  
-	    	  List<SubCategory> categoryList = new ArrayList<SubCategory>();  
+	    	  List<SubCategory> subcategoryList = new ArrayList<SubCategory>();  
 	    	  
 	    	  String sql = "SELECT * FROM SUB_CATEGORIES";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-	    	  categoryList = jdbcTemplate.query(sql, new SubCategoryRowMapper());  
-	    	  return categoryList;  
+	    	  subcategoryList = jdbcTemplate.query(sql, new SubCategoryRowMapper());  
+	    	  return subcategoryList;  
 	    	 }  
 
     @Override
 	public  List<SubCategory> getSubCategoriesForTheme(int theme) {  
-	    	  List<SubCategory> categoryList = new ArrayList<SubCategory>();  
+	    	  List<SubCategory> subcategoryList = new ArrayList<SubCategory>();  
 	    	  
 	    	  String sql = "SELECT * FROM SUB_CATEGORIES WHERE CATEGORY_ID IN ( "
 	    	  			+  "SELECT CATEGORY_ID FROM CATEGORIES WHERE THEME_ID = ?)";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-	    	  categoryList = jdbcTemplate.query(sql,new Object[] {theme}, new SubCategoryRowMapper());  
-	    	  return categoryList;  
+	    	  subcategoryList = jdbcTemplate.query(sql,new Object[] {theme}, new SubCategoryRowMapper());  
+	    	  return subcategoryList;  
 	    	 } 
     
     @Override
    	public  List<SubCategory> getSubCategoriesForCategory(int category) {  
-   	    	  List<SubCategory> categoryList = new ArrayList<SubCategory>();  
+   	    	  List<SubCategory> subcategoryList = new ArrayList<SubCategory>();  
    	    	  
    	    	  String sql = "SELECT * FROM SUB_CATEGORIES WHERE CATEGORY_ID = ?";  
    	    	  
    	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
-   	    	  categoryList = jdbcTemplate.query(sql,new Object[] {category}, new SubCategoryRowMapper());  
-   	    	  return categoryList;  
+   	    	  subcategoryList = jdbcTemplate.query(sql,new Object[] {category}, new SubCategoryRowMapper());  
+   	    	  return subcategoryList;  
    	    	 } 
 	    
 	 

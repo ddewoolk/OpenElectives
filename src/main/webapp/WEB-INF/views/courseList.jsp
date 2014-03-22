@@ -7,7 +7,7 @@
 <head>
 <title>Open Electives List</title>
 
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 <c:url var="findCategoriesURL" value="/categories" />
 <c:url var="findThemeSubCategoriesURL" value="/themesubcategories" />
 <c:url var="findSubCategoriesURL" value="/subcategories" />
@@ -46,7 +46,7 @@ $(document).ready(function() {
 	$('#category').change(
 			function() {
 				$.getJSON('${findSubCategoriesURL}', {
-						subtheme : $(this).val(),
+						category : $(this).val(),
 						ajax : 'true'
 					}, function(data) {
 						var html = '<option value="0">Select from Valid Sub-Categories for this Category</option>';
@@ -130,7 +130,7 @@ td {
 	<center>
 
 
-		<form:form method="GET" action="/electives/getCourseList">
+		<form:form method="GET" action="/OpenElectives/getCourseList">
 			<div class="header">Open Elective List</div>
 			<div class="filter">
 				Semesters: <select name="semester" id="semester" class="dropdown">
@@ -157,16 +157,16 @@ td {
 				</select>
 			</div>
 			<div class="filter">
-				Sub-Categories: <select name="subcategory" id="subcategory" class="dropdown">
-					<option value=0>Select a Sub Category</option>
+				SubCategories: <select name="subcategory" id="subcategory" class="dropdown">
+					<option value=0>Select a SubCategory</option>
 					<c:forEach var="subcategory" items="${subcategoryList}">
-						<option value="${subcategory.subCategoryId}">${subCategory.name}</option>
+						<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
 					</c:forEach>
 				</select>
 			</div>
-
+			
 			<div class="filter">
-				Discipline/Subject: <input name="discipline" class="input" />
+				Discipline: <input name="discipline" class="input" />
 			</div>
 			<div class="filter">
 				Pre-requisites: <input name="prereqs" class="input" />
