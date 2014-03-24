@@ -54,12 +54,12 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 		//Filter by Pre-requisites
 		sql += " AND REGEXP_LIKE(NVL(PRE_REQUISITES,'*'),?,'i')";
 		formattedPrereqs = prereqs.replace(",","*|*").replace(" ", "\\s");
-		queryVar[3] = "*" + formattedPrereqs + "*";	
+		queryVar[3] = "*" + formattedPrereqs;	
 
 		//Filter by Anti-requisites
 		sql += " AND REGEXP_LIKE(NVL(ANTI_REQUISITES,'*'),?,'i')";
 		formattedAntireqs = antireqs.replace(",","*|*").replace(" ", "\\s");
-		queryVar[4] = "*" + formattedAntireqs + "*";	
+		queryVar[4] = "*" + formattedAntireqs;	
 		
 		//Filter by Semester
 		if (semesterId > 0){
