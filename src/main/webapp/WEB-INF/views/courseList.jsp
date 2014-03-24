@@ -28,8 +28,10 @@ $(document).ready(function() {
 				}
 				html += '</option>';
 				$('#category').html(html);
+				html2 = '<option value="0">To see a list of SubCategories, please select a Category</option>';
+				$('#subcategory').html(html2);
 			});
-			$.getJSON('${findThemeSubCategoriesURL}', {
+			/* $.getJSON('${findThemeSubCategoriesURL}', {
 					theme : $(this).val(),
 					ajax : 'true'
 				}, function(data) {
@@ -41,7 +43,7 @@ $(document).ready(function() {
 					}
 					html += '</option>';
 					$('#subcategory').html(html);
-				});
+				}); */
 		});
 	$('#category').change(
 			function() {
@@ -158,15 +160,15 @@ td {
 			</div>
 			<div class="filter">
 				SubCategories: <select name="subcategory" id="subcategory" class="dropdown">
-					<option value=0>Select a SubCategory</option>
-					<c:forEach var="subcategory" items="${subcategoryList}">
+					<option value=0>To see a list of SubCategories, please select a Category</option>
+					 <%-- <c:forEach var="subcategory" items="${subcategoryList}">
 						<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
-					</c:forEach>
+					</c:forEach> --%>
 				</select>
 			</div>
 			
 			<div class="filter">
-				Discipline: <input name="discipline" class="input" />
+				Subject: <input name="discipline" class="input" />
 			</div>
 			<div class="filter">
 				Pre-requisites: <input name="prereqs" class="input" />
