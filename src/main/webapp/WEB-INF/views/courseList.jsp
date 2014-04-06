@@ -8,6 +8,7 @@
 <title>Open Electives List</title>
 
 <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<link href="<c:url value="/resources/css/pif.css" />" rel="stylesheet">
 <c:url var="findCategoriesURL" value="/categories" />
 <c:url var="findThemeSubCategoriesURL" value="/themesubcategories" />
 <c:url var="findSubCategoriesURL" value="/subcategories" />
@@ -97,7 +98,8 @@ td {
 	color: black;
 	width: 500px;
 	height: 22px;
-	text-align: center;
+	text-align: left;
+	
 }
 
 .filter {
@@ -179,18 +181,27 @@ td {
 			<div class="submit">
 				<input type="submit" value="Submit" />
 			</div>
-			<table border="1">
-				<tr>
-					<td class="heading">Course</td>
-					<td class="heading">Name</td>
-					<td class="heading">Description</td>
-					<td class="heading">Academic Organization</td>
-					<td class="heading">Academic Discipline</td>
-					<td class="heading">Pre-requisites</td>
-					<td class="heading">Anti-requisites</td>
+			<table class="electives" border="1">
+			<tbody>
+				<tr class="subhead">
+					<td>COURSE</td>
+					<td>NAME</td>
+					<td>DESCRIPTION</td>
+					<td>ACADEMIC ORGANIZATION</td>
+					<td>ACADEMIC DISCIPLINE</td>
+					<td>PRE-REQUISITES</td>
+					<td>ANTI-REQUISITES</td>
 				</tr>
-				<c:forEach var="course" items="${courseList}">
-					<tr>
+				<c:forEach var="course" items="${courseList}" varStatus="status">
+				<c:choose>
+				<c:when test="${status.index % 2 == 1}">
+				<tr class="grey">
+				</c:when>
+				<c:otherwise>
+				<tr>
+				</c:otherwise>
+				</c:choose>
+					
 						<td>${course.subject} ${course.catalogNbr}</td>
 						<td>${course.courseTitle}</td>
 						<td class="bigcol">${course.calendarDescription}</td>
@@ -200,6 +211,7 @@ td {
 						<td>${course.antirequisites}</td>
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 		</form:form>
 	</center>
