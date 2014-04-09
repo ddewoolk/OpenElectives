@@ -65,6 +65,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/descriptions", method = RequestMethod.GET)
+	public String descriptions(Locale locale, Model model) {
+				
+		return "descriptions";
+	}
+	
 	 @RequestMapping(value= "/getCourseList",method = RequestMethod.GET)  
 	 public String getCourseList(@RequestParam(value = "theme", required = false, defaultValue = "0") int theme,
 			 @RequestParam(value = "category", required = false, defaultValue = "0") int category,

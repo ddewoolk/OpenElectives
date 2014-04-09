@@ -1,7 +1,64 @@
 <style type="text/css">
 
+/* shell wrapping for page */
+
+
+
+.siteWrapper {
+    text-align: center;
+}
+
+.pageWrapper {
+    width: 960px;
+    margin: auto;
+    text-align: left;
+    position: relative;
+}
+
+.globalNavigation {
+    background-color: #202020;
+    border-bottom: 1px solid #333;
+    padding: 9px 9px 8px;
+    height: 43px;
+}
+
+.globalLogo {
+    float: left;
+}
+
+
+.header {background-color:#888;
+background-image: url("/OpenElectives/resources/images/elective_header2.jpg");
+width:900px;
+height:110px;
+padding:30px;
+
+}
+
+.header, .header p {
+  font-size: 48px;
+  font-weight:bold;
+  line-height: 1.6em;
+  color: #Fff;
+}
+
+#footer_blurb {
+    text-align: center;
+    color: #757575;
+    font-family: Arial,sans-serif;
+    font-size: 10px;
+    line-height: 12pt;
+}
+
+body {
+	background-color: #444;
+	font-family: Arial,sans-serif;
+}
+
+/* end of shell wrapping */
+
 h1 {
-    color: #767d00;
+    color: #f60;
     font-family: arial,sans-serif;
     font-size: 30px;
     font-weight: bold;
@@ -10,8 +67,8 @@ h1 {
 }
 
 h2 {
-    color: #767d00;
-    font-family: UniversLTStd-BoldCn,UniversCondensed,Helvetica,sans-serif;
+    color: #F30;
+    font-family: arial,sans-serif;
     font-size: 22px;
     font-weight: bold;
 }
@@ -43,16 +100,50 @@ ol li {
 }
 
 a {
-  color: #767d00;
+  color: #F60;
   text-decoration: underline;
 }
 a:hover {
-  color: #b2b92d;
+  color: #767d00;
   text-decoration: underline;
 }
 
 
 
+
+/* white content area */
+
+.contentArea {background-color:#FFF;
+width:900px;
+padding:30px;
+
+}
+
+.contentArea, .contentArea p {
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+.contentArea ul li {
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+.contentArea ol li {
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+.contentArea a {
+  color: #F60;
+  text-decoration: underline;
+}
+.contentArea a:hover {
+  color: #F90;
+  text-decoration: underline;
+}
+
+/* end of content area */
 
 /* electives table  */
 
@@ -75,7 +166,7 @@ border-bottom: 5px solid #fff;
 }
 
 table.electives th {
-background-color:#b2b92d;
+background-color:#FF4C00;
 padding: 12px;
     font-family: UniversLTStd-BoldCn,UniversCondensed,Helvetica,sans-serif;
     font-size: 16px;
@@ -109,7 +200,7 @@ width: 150px;
 background-color: #EEEEEE;
 }
 
-.electivesimage {border: 1px #ffffff solid;
+.contactimage {border: 1px #ffffff solid;
 margin-right: 20px;
 
 }
@@ -117,6 +208,39 @@ margin-right: 20px;
 /**  end of table items **/
 
 
+
+
+
+/*  form styles */
+
+.filter {
+	width: 760px;
+	text-align: left;
+}
+
+.dropdown {
+	float: right;
+	width: 580px;
+}
+
+.input {
+	float: right;
+	width: 575px;
+	height: 18px;
+}
+
+.submit {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.submit input {
+	width: 200px;
+	height: 30px;
+}
+
+/*  end of form styles */
 
 
 </style>
