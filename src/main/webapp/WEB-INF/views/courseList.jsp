@@ -205,16 +205,16 @@
 								<input type="submit" value="Submit" />
 							</div><br/>
 							<table class="electives" cellpadding="10"
-								cellspacing="0" width="900">
+								cellspacing="0" >
 								<tbody>
 									<tr valign="top" class="subhead">
-										<td width="32">COURSE</td>
-										<td width="61">NAME</td>
-										<td width="229">DESCRIPTION</td>
-										<td width="69">ACADEMIC <br> ORGANIZATION</td>
-										<td width="43">ACADEMIC DISCIPLINE</td>
-										<td width="48">PRE-REQUISITES</td>
-										<td width="68">ANTI-REQUISITES</td>
+										<td>COURSE</td>
+										<td>NAME</td>
+										<td>DESCRIPTION</td>
+										<td>ACADEMIC <br> ORGANIZATION</td>
+										<td>ACADEMIC<br> DISCIPLINE</td>
+										<td>PRE-REQUISITES</td>
+										<td>ANTI-REQUISITES</td>
 									</tr>
 									<c:forEach var="course" items="${courseList}"
 										varStatus="status">
@@ -226,7 +226,6 @@
 												<tr>
 											</c:otherwise>
 										</c:choose>
-
 										<td align="left" valign="top">${course.subject}${course.catalogNbr}</td>
 										<td align="left" valign="top">${course.courseTitle}</td>
 										<td align="left" valign="top">${course.calendarDescription}</td>
@@ -238,8 +237,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
-		</form:form>
-	</center>
+		
 
 	<!-- footer -->
 
@@ -252,7 +250,8 @@
 			document.write("&copy; " + year + " Ryerson University");
 		//-->
 		</script>
-		</span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <span id="footer_address">
+		</span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+		<span id="footer_address">
 			350 Victoria Street, Toronto, Ontario, Canada M5B 2K3 </span> <br /> <a
 			href="http://www.ryerson.ca/privacy/">Privacy Policy</a>
 		&nbsp;&nbsp;&nbsp; <a href="http://www.ryerson.ca/accessibility/">Accessibility</a>
@@ -262,8 +261,8 @@
 
 	</div>
 	<!-- end footer -->
-	</div>
-	</div>
-	</div>
+	</div></div></div>
+	</form:form>
+	</center>
 </body>
 </html>
