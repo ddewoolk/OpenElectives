@@ -153,13 +153,11 @@ border-collapse: collapse;
 font-family: Helvetica,sans-serif;
 font-size: 12px;
 line-height: 150%;
-
-
 }
 
 table.electives td {
 border: 0px #CCCCCC solid;
-padding: 10px;
+  padding: 5px;
 background-color: #ebebeb;
 border-bottom: 5px solid #fff;
 
