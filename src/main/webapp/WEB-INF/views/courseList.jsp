@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -17,6 +17,15 @@
 	$(document)
 			.ready(
 					function() {
+						//Set the input search values after the page is refreshed
+						//Might need an AJAX implementation in fuure
+						$('#semester').val(${selectSemester});
+						$('#theme').val(${selectTheme});
+						$('#category').val(${selectCategory});
+						$('#subcategory').val(${selectSubcategory});
+						$('#discipline').val('${selectDiscipline}');
+						$('#prereqs').val('${selectPrerequisites}');
+						$('#antireqs').val('${selectAntirequisites}');
 						$('#theme')
 								.change(
 										function() {
@@ -193,13 +202,13 @@
 							</div><br/>
 
 							<div class="filter">
-								<strong>Subject: <input name="discipline" class="input" /></strong>
+								<strong>Subject: <input name="discipline" id="discipline" type="text" class="input" /></strong>
 							</div><br/>
 							<div class="filter">
-								<strong>Pre-requisites: <input name="prereqs" class="input" /></strong>
+								<strong>Pre-requisites: <input name="prereqs" id="prereqs" type="text"  class="input" /></strong>
 							</div><br/>
 							<div class="filter">
-								<strong>Anti-requisites: <input name="antireqs" class="input" /></strong>
+								<strong>Anti-requisites: <input name="antireqs" id="antireqs" type="text" class="input" /></strong>
 							</div><br/>
 							<div class="submit">
 								<input type="submit" value="Submit" />

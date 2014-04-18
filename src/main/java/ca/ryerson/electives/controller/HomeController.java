@@ -86,6 +86,13 @@ public class HomeController {
 		 if (theme > 0 || category > 0 || subcategory > 0 || discipline != "" || prereqs != "" || antireqs != "" || semester > 0)
 		 {
 			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,category,subcategory,discipline,prereqs,antireqs,semester);  
+		     model.addAttribute("selectSemester", semester);
+		     model.addAttribute("selectTheme",theme);
+		     model.addAttribute("selectCategory",category);
+		     model.addAttribute("selectSubCategory",subcategory);
+		     model.addAttribute("selectDiscipline",discipline);
+		     model.addAttribute("selectPrerequisites",prereqs);
+		     model.addAttribute("selectAntirequisites",antireqs);
 		 }
 		 else 
 		 {
