@@ -83,6 +83,15 @@ public class HomeController {
 		 
 		 List<Course> courseList;
 		 
+		 //Default Values
+		 model.addAttribute("selectSemester", 0);
+	     model.addAttribute("selectTheme",0);
+	     model.addAttribute("selectCategory",0);
+	     model.addAttribute("selectSubCategory",0);
+	     model.addAttribute("selectDiscipline","");
+	     model.addAttribute("selectPrerequisites","");
+	     model.addAttribute("selectAntirequisites","");
+		 
 		 if (theme > 0 || category > 0 || subcategory > 0 || discipline != "" || prereqs != "" || antireqs != "" || semester > 0)
 		 {
 			 courseList = electiveHierarchyService.getCourseListFromHierarchy(theme,category,subcategory,discipline,prereqs,antireqs,semester);  
@@ -100,7 +109,7 @@ public class HomeController {
 		 }
 	  
 	  List<Semester> semesterList = semesterService.getActiveSemesterList(); 
-	  List<SubCategory> subcategoryList = subcategoryService.getSubCategoryList();
+	  List<SubCategory> subcategoryList = subcategoryService.getSubCategoriesForCategory(category);
 	  List<Theme> themeList = themeService.getThemeList();
 	  List<Category> categoryList = categoryService.getCategoryList();
 

@@ -19,14 +19,15 @@
 			.ready(
 					function() {
 						//Set the input search values after the page is refreshed
-						//Might need an AJAX implementation in fuure
+						//Might need an AJAX implementation in future
 						$('#semester').val('${selectSemester}');
 						$('#theme').val('${selectTheme}');
 						$('#category').val('${selectCategory}');
-						$('#subcategory').val('${selectSubcategory}');
+						$('#subcategory').val('${selectSubCategory}');
 						$('#discipline').val('${selectDiscipline}');
 						$('#prereqs').val('${selectPrerequisites}');
 						$('#antireqs').val('${selectAntirequisites}');
+
 						$('#theme')
 								.change(
 										function() {
@@ -199,11 +200,13 @@
 							<div class="filter">
 								<strong>SubCategories: <select name="subcategory"
 									id="subcategory" class="dropdown">
-										<option value=0>To see a list of SubCategories,
-											please select a Category</option>
-										<%-- <c:forEach var="subcategory" items="${subcategoryList}">
-						<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
-					</c:forEach> --%>
+										<c:if test="${empty subcategoryList}">
+											<option value=0>To see a list of SubCategories,
+												please select a Category</option>
+										</c:if>
+										<c:forEach var="subcategory" items="${subcategoryList}">
+											<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
+										</c:forEach>
 								</select></strong>
 							</div>
 							<br />
@@ -226,14 +229,15 @@
 							<div class="submit">
 								<input type="submit" value="Submit" />
 							</div>
-							
+
 
 							<c:if test="${empty courseList}">
-							<h3>The search yielded no results. Please refine your criteia and try again</h3>
+								<h3>The search yielded no results. Please refine your
+									criteia and try again</h3>
 							</c:if>
 
 							<c:if test="${not empty courseList}">
-							<br />
+								<br />
 								<table class="electives" cellpadding="10" cellspacing="0">
 									<tbody>
 										<tr valign="top" class="subhead">
@@ -277,12 +281,13 @@
 
 								<span id="footer_copyright"> <script
 										language="JavaScript">
-		<!--
-			var today = new Date();
-			var year = today.getFullYear();
-			document.write("&copy; " + year + " Ryerson University");
-		//-->
-		</script>
+								<!--
+									var today = new Date();
+									var year = today.getFullYear();
+									document.write("&copy; " + year
+											+ " Ryerson University");
+								//-->
+								</script>
 								</span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <span id="footer_address">
 									350 Victoria Street, Toronto, Ontario, Canada M5B 2K3 </span> <br />
 								<a href="http://www.ryerson.ca/privacy/">Privacy Policy</a>
