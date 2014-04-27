@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <title>Open Elective Selection Tool</title>
@@ -19,10 +20,10 @@
 					function() {
 						//Set the input search values after the page is refreshed
 						//Might need an AJAX implementation in fuure
-						$('#semester').val(${selectSemester});
-						$('#theme').val(${selectTheme});
-						$('#category').val(${selectCategory});
-						$('#subcategory').val(${selectSubcategory});
+						$('#semester').val('${selectSemester}');
+						$('#theme').val('${selectTheme}');
+						$('#category').val('${selectCategory}');
+						$('#subcategory').val('${selectSubcategory}');
 						$('#discipline').val('${selectDiscipline}');
 						$('#prereqs').val('${selectPrerequisites}');
 						$('#antireqs').val('${selectAntirequisites}');
@@ -159,119 +160,144 @@
 
 							<h2>Choose Elective Options</h2>
 							<p>
-								For more information please read <a href="/OpenElectives/descriptions">themes
-									and descriptions &gt;&gt;</a>
+								For more information please read <a
+									href="/OpenElectives/descriptions">themes and descriptions
+									&gt;&gt;</a>
 							</p>
 							<div class="filter">
-								<strong>Semesters: <select name="semester" id="semester"
-									class="dropdown">
-									<option value=0>Select a Semester</option>
-									<c:forEach var="semester" items="${semesterList}">
-										<option value="${semester.semesterId}">${semester.name}</option>
-									</c:forEach>
+								<strong>Semesters: <select name="semester"
+									id="semester" class="dropdown">
+										<option value=0>Select a Semester</option>
+										<c:forEach var="semester" items="${semesterList}">
+											<option value="${semester.semesterId}">${semester.name}</option>
+										</c:forEach>
 								</select>
 								</strong>
-							</div><br/>
+							</div>
+							<br />
 							<div class="filter">
-								<strong>Themes: <select name="theme" id="theme" class="dropdown">
-									<option value=0>Select a Theme</option>
-									<c:forEach var="theme" items="${themeList}">
-										<option value="${theme.themeId}">${theme.name}</option>
-									</c:forEach>
+								<strong>Themes: <select name="theme" id="theme"
+									class="dropdown">
+										<option value=0>Select a Theme</option>
+										<c:forEach var="theme" items="${themeList}">
+											<option value="${theme.themeId}">${theme.name}</option>
+										</c:forEach>
 								</select>
 								</strong>
-							</div><br/>
+							</div>
+							<br />
 							<div class="filter">
-								<strong>Categories: <select name="category" id="category"
-									class="dropdown">
-									<option value=0>Select a Category</option>
-									<c:forEach var="category" items="${categoryList}">
-										<option value="${category.categoryId}">${category.name}</option>
-									</c:forEach>
+								<strong>Categories: <select name="category"
+									id="category" class="dropdown">
+										<option value=0>Select a Category</option>
+										<c:forEach var="category" items="${categoryList}">
+											<option value="${category.categoryId}">${category.name}</option>
+										</c:forEach>
 								</select></strong>
-							</div><br/>
+							</div>
+							<br />
 							<div class="filter">
-								<strong>SubCategories: <select name="subcategory" id="subcategory"
-									class="dropdown">
-									<option value=0>To see a list of SubCategories, please
-										select a Category</option>
-									<%-- <c:forEach var="subcategory" items="${subcategoryList}">
+								<strong>SubCategories: <select name="subcategory"
+									id="subcategory" class="dropdown">
+										<option value=0>To see a list of SubCategories,
+											please select a Category</option>
+										<%-- <c:forEach var="subcategory" items="${subcategoryList}">
 						<option value="${subcategory.subCategoryId}">${subcategory.name}</option>
 					</c:forEach> --%>
 								</select></strong>
-							</div><br/>
+							</div>
+							<br />
 
 							<div class="filter">
-								<strong>Subject: <input name="discipline" id="discipline" type="text" class="input" /></strong>
-							</div><br/>
+								<strong>Subject: <input name="discipline"
+									id="discipline" type="text" class="input" /></strong>
+							</div>
+							<br />
 							<div class="filter">
-								<strong>Pre-requisites: <input name="prereqs" id="prereqs" type="text"  class="input" /></strong>
-							</div><br/>
+								<strong>Pre-requisites: <input name="prereqs"
+									id="prereqs" type="text" class="input" /></strong>
+							</div>
+							<br />
 							<div class="filter">
-								<strong>Anti-requisites: <input name="antireqs" id="antireqs" type="text" class="input" /></strong>
-							</div><br/>
+								<strong>Anti-requisites: <input name="antireqs"
+									id="antireqs" type="text" class="input" /></strong>
+							</div>
+							<br />
 							<div class="submit">
 								<input type="submit" value="Submit" />
-							</div><br/>
-							<table class="electives" cellpadding="10"
-								cellspacing="0" >
-								<tbody>
-									<tr valign="top" class="subhead">
-										<td>COURSE</td>
-										<td>NAME</td>
-										<td>DESCRIPTION</td>
-										<td>ACADEMIC <br> ORGANIZATION</td>
-										<td>ACADEMIC<br> DISCIPLINE</td>
-										<td>PRE-REQUISITES</td>
-										<td>ANTI-REQUISITES</td>
-									</tr>
-									<c:forEach var="course" items="${courseList}"
-										varStatus="status">
-										<c:choose>
-											<c:when test="${status.index % 2 == 1}">
-												<tr class="grey">
-											</c:when>
-											<c:otherwise>
-												<tr>
-											</c:otherwise>
-										</c:choose>
-										<td align="left" valign="top">${course.subject}${course.catalogNbr}</td>
-										<td align="left" valign="top">${course.courseTitle}</td>
-										<td align="left" valign="top">${course.calendarDescription}</td>
-										<td align="left" valign="top">${course.acadGroup}</td>
-										<td align="left" valign="top">${course.acadOrg}</td>
-										<td align="left" valign="top">${course.prerequisites}</td>
-										<td align="left" valign="top">${course.antirequisites}</td>
+							</div>
+							
+
+							<c:if test="${empty courseList}">
+							<h3>The search yielded no results. Please refine your criteia and try again</h3>
+							</c:if>
+
+							<c:if test="${not empty courseList}">
+							<br />
+								<table class="electives" cellpadding="10" cellspacing="0">
+									<tbody>
+										<tr valign="top" class="subhead">
+											<td>COURSE</td>
+											<td>NAME</td>
+											<td>DESCRIPTION</td>
+											<td>ACADEMIC <br> ORGANIZATION
+											</td>
+											<td>ACADEMIC<br> DISCIPLINE
+											</td>
+											<td>PRE-REQUISITES</td>
+											<td>ANTI-REQUISITES</td>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-		
+										<c:forEach var="course" items="${courseList}"
+											varStatus="status">
+											<c:choose>
+												<c:when test="${status.index % 2 == 1}">
+													<tr class="grey">
+												</c:when>
+												<c:otherwise>
+													<tr>
+												</c:otherwise>
+											</c:choose>
+											<td align="left" valign="top">${course.subject}${course.catalogNbr}</td>
+											<td align="left" valign="top">${course.courseTitle}</td>
+											<td align="left" valign="top">${course.calendarDescription}</td>
+											<td align="left" valign="top">${course.acadGroup}</td>
+											<td align="left" valign="top">${course.acadOrg}</td>
+											<td align="left" valign="top">${course.prerequisites}</td>
+											<td align="left" valign="top">${course.antirequisites}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:if>
 
-	<!-- footer -->
 
-	<div id="footer_blurb">
+							<!-- footer -->
 
-		<span id="footer_copyright"> <script language="JavaScript">
+							<div id="footer_blurb">
+
+								<span id="footer_copyright"> <script
+										language="JavaScript">
 		<!--
 			var today = new Date();
 			var year = today.getFullYear();
 			document.write("&copy; " + year + " Ryerson University");
 		//-->
 		</script>
-		</span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-		<span id="footer_address">
-			350 Victoria Street, Toronto, Ontario, Canada M5B 2K3 </span> <br /> <a
-			href="http://www.ryerson.ca/privacy/">Privacy Policy</a>
-		&nbsp;&nbsp;&nbsp; <a href="http://www.ryerson.ca/accessibility/">Accessibility</a>
-		&nbsp;&nbsp;&nbsp; <a
-			href="http://www.ryerson.ca/ryerson.ca/terms.html">Terms &amp;
-			Conditions</a>
+								</span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <span id="footer_address">
+									350 Victoria Street, Toronto, Ontario, Canada M5B 2K3 </span> <br />
+								<a href="http://www.ryerson.ca/privacy/">Privacy Policy</a>
+								&nbsp;&nbsp;&nbsp; <a
+									href="http://www.ryerson.ca/accessibility/">Accessibility</a>
+								&nbsp;&nbsp;&nbsp; <a
+									href="http://www.ryerson.ca/ryerson.ca/terms.html">Terms
+									&amp; Conditions</a>
 
-	</div>
-	<!-- end footer -->
-	</div></div></div>
-	</form:form>
+							</div>
+							<!-- end footer -->
+						</div>
+					</div>
+				</div>
+		</form:form>
 	</center>
 </body>
 </html>
