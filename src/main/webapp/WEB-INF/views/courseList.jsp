@@ -233,7 +233,7 @@
 
 							<c:if test="${empty courseList}">
 								<h3>The search yielded no results. Please refine your
-									criteia and try again</h3>
+									criteria and try again</h3>
 							</c:if>
 
 							<c:if test="${not empty courseList}">
