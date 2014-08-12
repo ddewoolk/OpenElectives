@@ -41,7 +41,8 @@ public class ElectiveHierarchyDaoImpl implements ElectiveHierarchyDao {
 			queryVar[0] = themeId;
 		}
 		else {
-			sql = "SELECT * FROM COURSES WHERE 1 = ?";
+			sql = "select * from COURSES where COURSE_ID IN (SELECT COURSE_ID FROM SEMESTER_OFFERINGS WHERE "
+	    	  		+ "SEMESTER_ID IN (SELECT SEMESTER_ID FROM SEMESTERS WHERE IS_ACTIVE = 'Y')) AND 1 = ?";
 			queryVar[0] = 1;
 		}
 

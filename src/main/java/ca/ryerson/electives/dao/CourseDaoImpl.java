@@ -20,7 +20,8 @@ public class CourseDaoImpl implements CourseDao {
 	public  List<Course> getCourseList() {  
 	    	  List<Course> courseList = new ArrayList<Course>();  
 	    	  
-	    	  String sql = "select * from COURSES";  
+	    	  String sql = "select * from COURSES where COURSE_ID IN (SELECT COURSE_ID FROM SEMESTER_OFFERINGS WHERE "
+	    	  		+ "SEMESTER_ID IN (SELECT SEMESTER_ID FROM SEMESTERS WHERE IS_ACTIVE = 'Y'))";  
 	    	  
 	    	  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
 	    	  courseList = jdbcTemplate.query(sql, new CourseRowMapper());  
